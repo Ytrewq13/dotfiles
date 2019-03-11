@@ -58,7 +58,7 @@ set showcmd
 autocmd FileType html,tex,python,c,perl,js,php,java inoremap <Space><Space> <Esc>/<++><CR>c4l
 
 autocmd FileType html inoremap ;html <Esc>:read ~/dotfiles/skeleton.html<CR>kddi
-autocmd FileType html inoremap ;p <++><p><CR><++><CR></p><CR><++><Esc>3kI<Space><Space>
+autocmd FileType html inoremap ;p <p><CR><++><CR></p><CR><++><Esc>3kI<Space><Space>
 autocmd FileType html inoremap ;div <++><div><CR><++><CR></div><CR><++><Esc>3kI<Space><Space>
 autocmd FileType html inoremap ;span <++><span><CR><++><CR></span><CR><++><Esc>3kI<Space><Space>
 autocmd FileType html inoremap ;h1 <++><h1><++></h1><++><Esc>I<Space><Space>
