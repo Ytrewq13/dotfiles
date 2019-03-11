@@ -7,6 +7,7 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'Chiel92/vim-autoformat'
 Plugin 'jvenant/vim-java-imports'
+Plugin 'ap/vim-css-color'
 call vundle#end()
 
 filetype plugin indent on
