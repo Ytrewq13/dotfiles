@@ -174,7 +174,6 @@ bar {
 for_window [class="^.*"] border pixel 0
 gaps inner 10
 gaps outer 5
-smart_gaps inverse_outer
 
 bindsym $mod+Shift+x exec google-chrome-stable
 bindsym $mod+Ctrl+l exec i3lock-fancy
