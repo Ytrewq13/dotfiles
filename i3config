@@ -184,3 +184,4 @@ bindsym Control+Print exec gnome-screenshot -i
 exec --no-startup-id compton -b
 exec --no-startup-id nitrogen --restore
 exec --no-startup-id nm-applet
+exec --no-startup-id setxkbmap -layout gb
