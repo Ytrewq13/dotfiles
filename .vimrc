@@ -102,4 +102,4 @@ vnoremap <Right> <nop>
 nnoremap <Down> <nop>
 vnoremap <Down> <nop>
 
-colorscheme elflord
+colorscheme ron
