@@ -101,3 +101,5 @@ nnoremap <Right> <nop>
 vnoremap <Right> <nop>
 nnoremap <Down> <nop>
 vnoremap <Down> <nop>
+
+colorscheme ron
