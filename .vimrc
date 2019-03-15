@@ -70,6 +70,8 @@ autocmd FileType html inoremap ;a <a href='<++>'><++></a><++><Esc>^/<++><CR>c4l
 autocmd FileType html inoremap ;ul <CR><ul><CR><++><CR></ul><++><Esc>3k^/<++><CR>c4l
 autocmd FileType html inoremap ;li <li><++></li><++><Esc>^/<++><CR>c4l
 
+let g:tex_flavor = "latex"
+
 autocmd FileType tex inoremap ;tex <Esc>:read ~/dotfiles/skeleton.tex<CR>i
 autocmd FileType tex inoremap ;sec \section{<++>}<CR><++><Esc>kI<Space><Space>
 autocmd FileType tex inoremap ;ssec \subsection{<++>}<CR><++><Esc>kI<Space><Space>
