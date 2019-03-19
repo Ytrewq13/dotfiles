@@ -58,17 +58,17 @@ set showcmd
 
 autocmd FileType html,tex,python,c,perl,js,php,java inoremap <Space><Space> <Esc>/<++><CR>c4l
 
-autocmd FileType html inoremap ;html <Esc>:read ~/dotfiles/skeleton.html<CR>kddi
-autocmd FileType html inoremap ;p <p><CR><++><CR></p><CR><++><Esc>3k^/<++><CR>c4l<Tab>
-autocmd FileType html inoremap ;div <div><CR><++><CR></div><CR><++><Esc>3k^/<++><CR>c4l<Tab>
-autocmd FileType html inoremap ;span <span><CR><++><CR></span><CR><++><Esc>3k^/<++><CR>c4l<Tab>
-autocmd FileType html inoremap ;h1 <h1><++></h1><++><Esc>^/<++><CR>c4l
-autocmd FileType html inoremap ;h2 <h2><++></h2><++><Esc>^/<++><CR>c4l
-autocmd FileType html inoremap ;h3 <h3><++></h3><++><Esc>^/<++><CR>c4l
-autocmd FileType html inoremap ;img <img src='<++>'><++></img><++><Esc>^/<++><CR>c4l
-autocmd FileType html inoremap ;a <a href='<++>'><++></a><++><Esc>^/<++><CR>c4l
-autocmd FileType html inoremap ;ul <CR><ul><CR><++><CR></ul><++><Esc>3k^/<++><CR>c4l
-autocmd FileType html inoremap ;li <li><++></li><++><Esc>^/<++><CR>c4l
+autocmd FileType html,php inoremap ;html <Esc>:read ~/dotfiles/skeleton.html<CR>kddi
+autocmd FileType html,php inoremap ;p <p><CR><++><CR></p><CR><++><Esc>3k^/<++><CR>c4l<Tab>
+autocmd FileType html,php inoremap ;div <div><CR><++><CR></div><CR><++><Esc>3k^/<++><CR>c4l<Tab>
+autocmd FileType html,php inoremap ;span <span><CR><++><CR></span><CR><++><Esc>3k^/<++><CR>c4l<Tab>
+autocmd FileType html,php inoremap ;h1 <h1><++></h1><++><Esc>^/<++><CR>c4l
+autocmd FileType html,php inoremap ;h2 <h2><++></h2><++><Esc>^/<++><CR>c4l
+autocmd FileType html,php inoremap ;h3 <h3><++></h3><++><Esc>^/<++><CR>c4l
+autocmd FileType html,php inoremap ;img <img src='<++>'><++></img><++><Esc>^/<++><CR>c4l
+autocmd FileType html,php inoremap ;a <a href='<++>'><++></a><++><Esc>^/<++><CR>c4l
+autocmd FileType html,php inoremap ;ul <CR><ul><CR><++><CR></ul><++><Esc>3k^/<++><CR>c4l
+autocmd FileType html,php inoremap ;li <li><++></li><++><Esc>^/<++><CR>c4l
 
 let g:tex_flavor = "latex"
 
