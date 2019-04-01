@@ -9,6 +9,7 @@ Plugin 'Chiel92/vim-autoformat'
 Plugin 'jvenant/vim-java-imports'
 Plugin 'ap/vim-css-color'
 Plugin 'janko/vim-test'
+Plugin 'benmills/vimux'
 call vundle#end()
 
 filetype plugin indent on
@@ -52,10 +53,9 @@ noremap <F3> :Autoformat<CR>:w<CR>
 
 set showcmd
 
+autocmd FileType java nnoremap <F2> :w<CR>:VimuxRunCommand "mvn test"<CR>
 
-:noremap <F1> :update<CR>:make<CR><C-W>j<Esc>:cw 3<CR><C-W>p
 
-:noremap <F2> :update<CR>:make test run_test<CR><C-W>j<Esc>:cw 3<CR><C-W>p<C-K><C-6><C-J>:q
 
 autocmd FileType html,tex,python,c,perl,js,php,java inoremap <Space><Space> <Esc>/<++><CR>c4l
 
@@ -92,7 +92,7 @@ autocmd FileType c inoremap ;for int i;<CR>for (i = 0; i < <++>; i++)<CR>{<CR><+
 autocmd FileType java inoremap ;main public static void main(String[] args)<CR>{<CR><++><CR>}<Esc>kI<Space><Space>
 autocmd FileType java inoremap ;pub public <++> <++>(<++>)<CR>{<CR><++><CR>}<CR><++><Esc>4k22hi
 autocmd FileType java inoremap ;priv private <++> <++>(<++>)<CR>{<CR><++><CR>}<CR><++><Esc>4k23hi
-autocmd FileType java inoremap ;for for (int i = 0; i < <++>; i++)<CR>{<CR><++><CR>}<CR><++><Esc>4kI<Space><Space>
+autocmd FileType java inoremap ;for for (int i = 0; i < <++>; i++)<CR>{<CR><++><CR>}<Esc>3kI<Space><Space>
 
 autocmd FileType java,c inoremap ;while while (<++>)<CR>{<CR><++><CR>}<Esc>3kI<Space><Space>
 

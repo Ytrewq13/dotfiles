@@ -1,13 +1,2 @@
 #!/usr/bin/env bash
-mkdir $1 && cd $1
-mkdir src bin
-cd src
-mkdir test main
-cd main
-mkdir java
-cd ../test
-mkdir java lib
-cp /usr/share/java/hamcrest-core.jar lib
-cp /usr/share/java/junit.jar lib
-cd ../..
-cp $HOME/bin/Makefile .
+mvn archetype:generate -DinteractiveMode=true
