@@ -10,6 +10,7 @@ Plugin 'jvenant/vim-java-imports'
 Plugin 'ap/vim-css-color'
 Plugin 'janko/vim-test'
 Plugin 'benmills/vimux'
+Plugin 'tpope/vim-fugitive'
 call vundle#end()
 
 filetype plugin indent on
@@ -35,7 +36,6 @@ call plug#begin('~/.vim/plugged')
 Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
 Plug 'junegunn/fzf.vim'
-Plug 'airblade/vim-gitgutter'
 call plug#end()
 
 set number! relativenumber!
@@ -53,8 +53,9 @@ noremap <F3> :Autoformat<CR>:w<CR>
 
 set showcmd
 
-autocmd FileType java nnoremap <F2> :w<CR>:VimuxRunCommand "mvn test"<CR>
-
+autocmd FileType java nnoremap <F2> :w<CR>:VimuxRunCommand "mvn clean test install"<CR>
+autocmd FileType java nnoremap <F4> :w<CR>:VimuxRunCommand "mvn clean"<CR>
+autocmd FileType java nnoremap <F5> :w<CR>:VimuxRunCommand "mvn clean test install; java -jar target/*.jar; mvn clean"<CR>
 
 
 autocmd FileType html,tex,python,c,perl,js,php,java inoremap <Space><Space> <Esc>/<++><CR>c4l
