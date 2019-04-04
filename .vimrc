@@ -59,7 +59,7 @@ autocmd FileType java nnoremap <F2> :w<CR>:VimuxRunCommand "mvn clean test insta
 autocmd FileType java nnoremap <F4> :w<CR>:VimuxRunCommand "mvn clean"<CR>
 autocmd FileType java nnoremap <F5> :w<CR>:VimuxRunCommand "mvn clean test install; java -jar target/*.jar; mvn clean"<CR>
 
-autocmd FileType groff nnoremap <F2> :w<CR>:VimuxRunCommand "groff -ms -Tpdf *.ms"
+autocmd FileType groff nnoremap <F2> :w<CR>:VimuxRunCommand "groff -ms -Tpdf *.ms"<CR>
 
 
 autocmd FileType html,tex,python,c,perl,js,php,java inoremap <Space><Space> <Esc>/<++><CR>c4l
