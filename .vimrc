@@ -45,7 +45,7 @@ set ic incsearch
 
 execute pathogen#infect()
 call pathogen#helptags()
-map <C-o> :NERDTreeToggle<CR>
+map <Leader>o :NERDTreeToggle<CR>
 
 map ; :Files<CR>
 
