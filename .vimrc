@@ -38,6 +38,8 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
 Plug 'junegunn/fzf.vim'
 call plug#end()
 
+au BufNewFile,BufRead *.ms set filetype=groff
+
 set number! relativenumber!
 set ruler
 
