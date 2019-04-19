@@ -78,6 +78,8 @@ autocmd FileType html,php inoremap ;li <li><++></li><++><Esc>^/<++><CR>c4l
 
 let g:tex_flavor = "latex"
 
+autocmd FileType tex nnoremap <F2> :w<CR>:VimuxRunCommand "pdflatex *.tex;rm *.toc *.log *.aux *.out"<CR>
+
 autocmd FileType tex inoremap ;tex <Esc>:read ~/dotfiles/skeleton.tex<CR>i
 autocmd FileType tex inoremap ;sec \section{<++>}<CR><++><Esc>kI<Space><Space>
 autocmd FileType tex inoremap ;ssec \subsection{<++>}<CR><++><Esc>kI<Space><Space>
