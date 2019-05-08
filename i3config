@@ -177,6 +177,7 @@ gaps outer 5
 
 bindsym $mod+Shift+x exec google-chrome-stable
 bindsym $mod+Ctrl+l exec i3lock-fancy
+bindsym $mod+Shift+a exec --no-startup-id "sxiv ~/dotfiles/phonetic.png"
 
 bindsym Print exec "dmenu_run; sleep 0.2s; xdotool type myscreenshot; xdotool key KP_Enter"
 bindsym Control+Print exec gnome-screenshot -i
@@ -185,3 +186,4 @@ exec --no-startup-id compton -b
 exec --no-startup-id nitrogen --restore
 exec --no-startup-id nm-applet
 exec --no-startup-id setxkbmap -layout gb
+exec --no-startup-id echo "greece$(($RANDOM % 2 + 1)).png" | feh --bg-fill -f-
