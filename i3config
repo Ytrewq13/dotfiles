@@ -186,4 +186,5 @@ exec --no-startup-id compton -b
 exec --no-startup-id nitrogen --restore
 exec --no-startup-id nm-applet
 exec --no-startup-id setxkbmap -layout gb
-exec --no-startup-id echo "~/Pictures/desktop_backgrounds/greece$(($RANDOM % 2 + 1)).png" | feh --bg-fill -f-
+#exec --no-startup-id echo "/home/sam/Pictures/desktop-backgrounds/greece$(($RANDOM % 2 + 1)).png" | feh --bg-fill -f-
+exec --no-startup-id feh --bg-fill "/home/sam/Pictures/desktop-backgrounds/greece$(($RANDOM % 2 + 1)).png"
