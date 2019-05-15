@@ -127,3 +127,5 @@ alias cd='cs'
 alias vim='vim -u ~/dotfiles/.vimrc'
 
 alias shut='shutdown now'
+
+alias YT='youtube-viewer'
