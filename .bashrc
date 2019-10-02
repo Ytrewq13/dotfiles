@@ -129,3 +129,7 @@ alias vim='vim -u ~/dotfiles/.vimrc'
 alias shut='shutdown now'
 
 alias YT='youtube-viewer'
+
+export BIBINPUTS="$BIBINPUTS:${HOME}/bib/"
+
+#neofetch

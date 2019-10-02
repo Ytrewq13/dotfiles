@@ -61,6 +61,8 @@ autocmd FileType java nnoremap <F5> :w<CR>:VimuxRunCommand "mvn clean test insta
 
 autocmd FileType groff nnoremap <F2> :w<CR>:VimuxRunCommand "groff -R -t -p -e -ms -Tpdf *.ms > out.pdf"<CR>
 
+autocmd FileType c nnoremap <F2> :w<CR>:VimuxRunCommand "make"<CR>
+
 
 autocmd FileType html,tex,python,c,perl,js,php,java inoremap <Space><Space> <Esc>/<++><CR>c4l
 
