@@ -55,7 +55,7 @@ noremap <F3> :Autoformat<CR>:w<CR>
 
 set showcmd
 
-autocmd FileType java nnoremap <F2> :w<CR>:VimuxRunCommand "mvn clean test install"<CR>
+autocmd FileType java nnoremap <F2> :w<CR>:Java<CR>
 autocmd FileType java nnoremap <F4> :w<CR>:VimuxRunCommand "mvn clean"<CR>
 autocmd FileType java nnoremap <F5> :w<CR>:VimuxRunCommand "mvn clean test install; java -jar target/*.jar; mvn clean"<CR>
 
@@ -80,7 +80,7 @@ autocmd FileType html,php inoremap ;li <li><++></li><++><Esc>^/<++><CR>c4l
 
 let g:tex_flavor = "latex"
 
-autocmd FileType tex nnoremap <F2> :w<CR>:VimuxRunCommand "pdflatex *.tex;rm *.toc *.log *.aux *.out"<CR>
+autocmd FileType tex nnoremap <F2> :w<CR>:call VimuxRunCommand("pdflatex -interaction=nonstopmode " . bufname("%") . ";/usr/bin/rm *.toc *.log *.aux *.out *.nav *.snm")<CR>
 
 autocmd FileType tex inoremap ;tex <Esc>:read ~/dotfiles/skeleton.tex<CR>i
 autocmd FileType tex inoremap ;sec \section{<++>}<CR><++><Esc>kI<Space><Space>

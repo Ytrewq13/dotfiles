@@ -122,6 +122,8 @@ function cs () {
     cd "$@" && ls
 }
 
+alias rm='rm -I'
+
 alias cd='cs'
 
 alias vim='vim -u ~/dotfiles/.vimrc'

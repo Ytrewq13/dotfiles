@@ -176,7 +176,7 @@ gaps inner 10
 gaps outer 5
 
 bindsym $mod+Shift+x exec google-chrome-stable
-bindsym $mod+Ctrl+l exec i3lock-fancy
+bindsym $mod+Ctrl+l exec screenlocker
 bindsym $mod+Shift+a exec --no-startup-id "sxiv ~/dotfiles/phonetic.png"
 bindsym $mod+Shift+s exec --no-startup-id steam
 
@@ -186,5 +186,5 @@ bindsym Control+Print exec gnome-screenshot -i
 exec --no-startup-id compton -b
 exec --no-startup-id nm-applet
 exec --no-startup-id setxkbmap -layout gb
-exec --no-startup-id randomize-background
 exec --no-startup-id fcitx &
+exec --no-startup-id background-daemon 60 &

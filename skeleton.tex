@@ -4,9 +4,11 @@
 \usepackage{titlesec}
 \usepackage{datetime}
 
+\newdateformat{mydate}{\dayofweekname{\THEDAY}{\THEMONTH}{\THEYEAR}, \ordinal{DAY} \monthname[\THEMONTH], \THEYEAR}
+
 \title{<++>}
 \author{Sam Whitehead}
-\date{\today}
+\date{\mydate\today}
 
 \begin{document}
     \maketitle
