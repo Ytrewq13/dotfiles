@@ -59,9 +59,14 @@ autocmd FileType java nnoremap <F2> :w<CR>:Java<CR>
 autocmd FileType java nnoremap <F4> :w<CR>:VimuxRunCommand "mvn clean"<CR>
 autocmd FileType java nnoremap <F5> :w<CR>:VimuxRunCommand "mvn clean test install; java -jar target/*.jar; mvn clean"<CR>
 
-autocmd FileType groff nnoremap <F2> :w<CR>:VimuxRunCommand "groff -R -t -p -e -ms -Tpdf *.ms > out.pdf"<CR>
+autocmd FileType groff nnoremap <F2> :w<CR>:VimuxRunCommand "groff -R -t -p -e -ms -Tps *.ms \| ps2pdf - > out.pdf"<CR><CR>
+autocmd FileType groff inoremap <F2> <Esc>:w<CR>:VimuxRunCommand "groff -R -t -p -e -ms -Tps *.ms \| ps2pdf - > out.pdf"<CR><CR>
 
 autocmd FileType c nnoremap <F2> :w<CR>:VimuxRunCommand "make"<CR>
+autocmd FileType c inoremap <F2> <Esc>:w<CR>:VimuxRunCommand "make"<CR>
+autocmd FileType c nnoremap <F3> :w<CR>:VimuxRunCommand "make clean"<CR>
+autocmd FileType c inoremap <F3> <Esc>:w<CR>:VimuxRunCommand "make clean"<CR>
+autocmd FileType c noremap <F4> :Autoformat<CR>:w<CR>
 
 
 autocmd FileType html,tex,python,c,perl,js,php,java inoremap <Space><Space> <Esc>/<++><CR>c4l
@@ -80,7 +85,8 @@ autocmd FileType html,php inoremap ;li <li><++></li><++><Esc>^/<++><CR>c4l
 
 let g:tex_flavor = "latex"
 
-autocmd FileType tex nnoremap <F2> :w<CR>:call VimuxRunCommand("pdflatex -interaction=nonstopmode " . bufname("%") . ";/usr/bin/rm *.toc *.log *.aux *.out *.nav *.snm")<CR>
+autocmd FileType tex nnoremap <F2> :w<CR>:call VimuxRunCommand("pdflatex --enable-write18 -interaction=nonstopmode " . bufname("%") . ";bibtex " . expand("%:t:r") . ".aux;pdflatex --enable-write18 -interaction=nonstopmode " . bufname("%") . ";pdflatex --enable-write18 -interaction=nonstopmode " . bufname("%") . ";/usr/bin/rm *.toc *.log *.aux *.out *.nav *.snm *.blg *.bbl")<CR><CR>
+autocmd FileType tex inoremap <F2> <Esc>:w<CR>:call VimuxRunCommand("pdflatex --enable-write18 -interaction=nonstopmode " . bufname("%") . ";bibtex " . expand("%:t:r") . ".aux;pdflatex --enable-write18 -interaction=nonstopmode " . bufname("%") . ";pdflatex --enable-write18 -interaction=nonstopmode " . bufname("%") . ";/usr/bin/rm *.toc *.log *.aux *.out *.nav *.snm *.blg *.bbl")<CR><CR>
 
 autocmd FileType tex inoremap ;tex <Esc>:read ~/dotfiles/skeleton.tex<CR>i
 autocmd FileType tex inoremap ;sec \section{<++>}<CR><++><Esc>kI<Space><Space>

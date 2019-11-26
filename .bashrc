@@ -123,6 +123,7 @@ function cs () {
 }
 
 alias rm='rm -I'
+# Use absolute path /usr/bin/rm in scripts
 
 alias cd='cs'
 
@@ -131,6 +132,12 @@ alias vim='vim -u ~/dotfiles/.vimrc'
 alias shut='shutdown now'
 
 alias YT='youtube-viewer'
+
+alias hexdump='hexdump -C'
+
+alias words='cat /usr/share/dict/words'
+
+alias unimatrix='unimatrix -a -f -s 96'
 
 export BIBINPUTS="$BIBINPUTS:${HOME}/bib/"
 
