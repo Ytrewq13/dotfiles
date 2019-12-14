@@ -183,6 +183,8 @@ bindsym $mod+Ctrl+l exec screenlocker
 bindsym $mod+Shift+a exec --no-startup-id "sxiv ~/dotfiles/phonetic.png"
 bindsym $mod+Shift+s exec --no-startup-id steam
 
+bindsym $mod+Shift+b exec randomize-background
+
 bindsym Print exec "dmenu_run; sleep 0.2s; xdotool type myscreenshot; xdotool key KP_Enter"
 bindsym Control+Print exec gnome-screenshot -i
 
