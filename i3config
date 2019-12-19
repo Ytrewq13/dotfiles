@@ -164,6 +164,8 @@ bindsym $mod+Shift+s exec --no-startup-id steam
 
 bindsym $mod+Left exec workspace-adjust -1
 bindsym $mod+Right exec workspace-adjust 1
+bindsym $mod+Shift+Left exec workspace-adjust-container -1
+bindsym $mod+Shift+Right exec workspace-adjust-container 1
 bindsym $mod+Shift+b exec randomize-background
 
 bindsym Print exec "dmenu_run; sleep 0.2s; xdotool type myscreenshot; xdotool key KP_Enter"
