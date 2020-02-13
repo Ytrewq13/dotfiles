@@ -2,8 +2,6 @@
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
-alias sudo='sudo '
-
 # If not running interactively, don't do anything
 case $- in
     *i*) ;;
@@ -121,6 +119,18 @@ fi
 function cs () {
     cd "$@" && ls
 }
+
+function confirm () {
+    echo -e "PLEASE be extremely careful if you are using \e[7m\e[31mchmod\e[0m or \e[7m\e[31mchown\e[0m"
+    echo -e "\e[1m\e[4m\e[33mSTRONGLY\e[0m consider if there may be unintended consequences"
+    read -p "ARE YOU SURE? (y/n)" choice
+    case "$choice" in
+        y|Y ) return 1;;
+        * ) return 0;;
+    esac
+}
+
+alias sudo='confirm || sudo '
 
 alias rm='rm -I'
 # Use absolute path /usr/bin/rm in scripts
