@@ -175,4 +175,5 @@ exec --no-startup-id compton -b
 exec --no-startup-id nm-applet
 exec --no-startup-id setxkbmap -layout gb
 exec --no-startup-id fcitx &
-exec --no-startup-id background-daemon 60 &
+# TODO: replace this with the actual daemon in ~/Documents/personal_projects/background-daemon/
+exec --no-startup-id background-daemon

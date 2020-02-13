@@ -136,9 +136,19 @@ alias YT='youtube-viewer'
 alias hexdump='hexdump -C'
 
 alias words='cat /usr/share/dict/words'
+alias scrabble='cat /usr/share/dict/scrabble'
 
 alias unimatrix='unimatrix -a -f -s 96'
 
+alias sl='sl -e'
+
+alias j='jobs'
+
+alias w='curl v2.wttr.in'
+
 export BIBINPUTS="$BIBINPUTS:${HOME}/bib/"
 
+export PATH=$HOME/.local/bin:$PATH
+
 #neofetch
+[ -f "${GHCUP_INSTALL_BASE_PREFIX:=$HOME}/.ghcup/env" ] && source "${GHCUP_INSTALL_BASE_PREFIX:=$HOME}/.ghcup/env"
