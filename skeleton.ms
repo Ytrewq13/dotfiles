@@ -2,6 +2,8 @@
 .nr PS 11
 .nr PSINCR 2p
 
+.AM
+
 .TL
 <++>
 .AU

@@ -11,6 +11,7 @@ Plugin 'ap/vim-css-color'
 Plugin 'janko/vim-test'
 Plugin 'benmills/vimux'
 Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-surround'
 call vundle#end()
 
 filetype plugin indent on

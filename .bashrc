@@ -150,7 +150,7 @@ alias scrabble='cat /usr/share/dict/scrabble'
 
 alias unimatrix='unimatrix -a -f -s 96'
 
-alias sl='sl -e'
+#alias sl='sl -e'
 
 alias j='jobs'
 
