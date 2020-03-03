@@ -29,6 +29,12 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
+nnoremap <C-S-J> :tabl<CR>
+nnoremap <C-S-K> :tabr<CR>
+nnoremap <C-S-L> :tabn<CR>
+nnoremap <C-S-H> :tabp<CR>
+nnoremap <C-S-Y> :tabnew 
+
 set splitbelow
 set splitright
 
