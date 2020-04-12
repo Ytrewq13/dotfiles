@@ -150,7 +150,7 @@ bindsym $mod+r mode "resize"
 bar {
         font pango:DejaVu Sans Mono 11
         position top
-        status_command i3status
+        status_command py3status
 }
 
 for_window [class="^.*"] border pixel 0

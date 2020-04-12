@@ -16,6 +16,15 @@ call vundle#end()
 
 filetype plugin indent on
 
+set path+=**
+set wildmenu
+
+let g:netrw_banner=0
+let g:netrw_browse_split=4
+let g:netrw_altv=1
+let g:netrw_liststyle=3
+let g:netrw_list_hide=netrw_gitignore#Hide()
+
 set tabstop=4
 
 set shiftwidth=4
@@ -29,11 +38,10 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
-nnoremap <C-S-J> :tabl<CR>
-nnoremap <C-S-K> :tabr<CR>
-nnoremap <C-S-L> :tabn<CR>
-nnoremap <C-S-H> :tabp<CR>
-nnoremap <C-S-Y> :tabnew 
+nnoremap <C-N> :tabn<CR>
+nnoremap <C-P> :tabp<CR>
+"nnoremap <C-S-Y> :tabnew " TODO: find an unused key combination or pick a key
+"sequence for opening new files in tabs.
 
 set splitbelow
 set splitright
@@ -69,7 +77,7 @@ autocmd FileType java nnoremap <F5> :w<CR>:VimuxRunCommand "mvn clean test insta
 autocmd FileType groff inoremap <Space><Space> <Esc>/<++><CR>c4l
 autocmd FileType groff nnoremap <F2> :w<CR>:VimuxRunCommand "groff -R -t -p -e -ms -Tps *.ms \| ps2pdf - > out.pdf"<CR><CR>
 autocmd FileType groff inoremap <F2> <Esc>:w<CR>:VimuxRunCommand "groff -R -t -p -e -ms -Tps *.ms \| ps2pdf - > out.pdf"<CR><CR>
-autocmd FileType groff inoremap ;ms <Esc>:read ~/dotfiles/skeleton.ms<CR>ggi<Space><Space>
+autocmd FileType groff inoremap ;ms <Esc>:-1read ~/dotfiles/skeleton.ms<CR>ggi<Space><Space>
 
 autocmd FileType c,cpp nnoremap <F2> :w<CR>:VimuxRunCommand "make"<CR>
 autocmd FileType c,cpp inoremap <F2> <Esc>:w<CR>:VimuxRunCommand "make"<CR>
@@ -80,7 +88,7 @@ autocmd FileType c,cpp noremap <F4> :Autoformat<CR>:w<CR>
 
 autocmd FileType html,tex,python,c,perl,js,php,java inoremap <Space><Space> <Esc>/<++><CR>c4l
 
-autocmd FileType html,php inoremap ;html <Esc>:read ~/dotfiles/skeleton.html<CR>kddi
+autocmd FileType html,php inoremap ;html <Esc>:-1read ~/dotfiles/skeleton.html<CR>kddi
 autocmd FileType html,php inoremap ;p <p><CR><++><CR></p><CR><++><Esc>3k^/<++><CR>c4l<Tab>
 autocmd FileType html,php inoremap ;div <div><CR><++><CR></div><CR><++><Esc>3k^/<++><CR>c4l<Tab>
 autocmd FileType html,php inoremap ;span <span><CR><++><CR></span><CR><++><Esc>3k^/<++><CR>c4l<Tab>
@@ -97,7 +105,7 @@ let g:tex_flavor = "latex"
 autocmd FileType tex nnoremap <F2> :w<CR>:call VimuxRunCommand("pdflatex --enable-write18 -interaction=nonstopmode " . bufname("%") . ";bibtex " . expand("%:t:r") . ".aux;pdflatex --enable-write18 -interaction=nonstopmode " . bufname("%") . ";pdflatex --enable-write18 -interaction=nonstopmode " . bufname("%") . ";/usr/bin/rm *.toc *.log *.aux *.out *.nav *.snm *.blg *.bbl")<CR><CR>
 autocmd FileType tex inoremap <F2> <Esc>:w<CR>:call VimuxRunCommand("pdflatex --enable-write18 -interaction=nonstopmode " . bufname("%") . ";bibtex " . expand("%:t:r") . ".aux;pdflatex --enable-write18 -interaction=nonstopmode " . bufname("%") . ";pdflatex --enable-write18 -interaction=nonstopmode " . bufname("%") . ";/usr/bin/rm *.toc *.log *.aux *.out *.nav *.snm *.blg *.bbl")<CR><CR>
 
-autocmd FileType tex inoremap ;tex <Esc>:read ~/dotfiles/skeleton.tex<CR>i
+autocmd FileType tex inoremap ;tex <Esc>:-1read ~/dotfiles/skeleton.tex<CR>i
 autocmd FileType tex inoremap ;sec \section{<++>}<CR><++><Esc>kI<Space><Space>
 autocmd FileType tex inoremap ;ssec \subsection{<++>}<CR><++><Esc>kI<Space><Space>
 autocmd FileType tex inoremap ;sssec \subsubsection{<++>}<CR><++><Esc>kI<Space><Space>

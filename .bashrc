@@ -88,9 +88,12 @@ fi
 #export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
 # some more ls aliases
-alias ll='ls -alF'
-alias la='ls -A'
-alias l='ls -CF'
+#alias ll='ls -alF'
+alias ll='exa -aalF'
+#alias la='ls -A'
+alias la='exa -a'
+#alias l='ls -CF'
+alias l='exa -F'
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
@@ -101,8 +104,8 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 # ~/.bash_aliases, instead of adding them here directly.
 # See /usr/share/doc/bash-doc/examples in the bash-doc package.
 
-if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
+if [ -f ~/.config/bash/.bash_aliases ]; then
+    . ~/.config/bash/.bash_aliases
 fi
 
 # enable programmable completion features (you don't need to enable
@@ -116,49 +119,57 @@ if ! shopt -oq posix; then
     fi
 fi
 
-function cs () {
-    cd "$@" && ls
-}
 
-function confirm () {
-    echo -e "PLEASE be extremely careful if you are using \e[7m\e[31mchmod\e[0m or \e[7m\e[31mchown\e[0m"
-    echo -e "\e[1m\e[4m\e[33mSTRONGLY\e[0m consider if there may be unintended consequences"
-    read -p "ARE YOU SURE? (y/n)" choice
-    case "$choice" in
-        y|Y ) return 1;;
-        * ) return 0;;
-    esac
-}
+######################
+######################
+## Home dir cleanup ##
+######################
+######################
 
-alias sudo='confirm || sudo '
+export XDG_CONFIG_HOME="$HOME"/.config
+export XDG_DATA_HOME="$HOME"/.local/share
+export XDG_CACHE_HOME="$HOME"/.cache
 
-alias rm='rm -I'
-# Use absolute path /usr/bin/rm in scripts
 
-alias cd='cs'
+# Bash completion config file
+export BASH_COMPLETION_USER_FILE="$XDG_CONFIG_HOME"/bash-completion/bash_completion
 
-alias vim='vim -u ~/dotfiles/.vimrc'
+# Bash history file
+export HISTFILE="$XDG_DATA_HOME"/bash/history
 
-alias shut='shutdown now'
+# Rust's cargo data
+export CARGO_HOME="$XDG_DATA_HOME"/cargo
 
-alias YT='youtube-viewer'
+# GNU's gpg2 data
+export GNUPGHOME="$XDG_DATA_HOME"/gnupg
+alias gpg2='gpg2 --homedir "$XDG_DATA_HOME"/gnupg'
 
-alias hexdump='hexdump -C'
+# Less' history file (why does this exist & why am I keeping it?)
+export LESSKEY="$XDG_CONFIG_HOME"/less/lesskey
+export LESSHISTFILE="$XDG_CACHE_HOME"/less/history
 
-alias words='cat /usr/share/dict/words'
-alias scrabble='cat /usr/share/dict/scrabble'
+# Haskell's stack data
+export STACK_ROOT="$XDG_DATA_HOME"/stack
 
-alias unimatrix='unimatrix -a -f -s 96'
+# Subversion (not even installed, why does it's dir exist?)
+alias svn='svn --config-dir "$XDG_CONFIG_HOME"/subversion'
 
-#alias sl='sl -e'
+# Ruby Gems data
+export GEM_HOME="$XDG_DATA_HOME"/gem
+export GEM_SPEC_CACHE="$XDG_CACHE_HOME"/gem
 
-alias j='jobs'
+#####################################################################
+########################### Misc  stuff #############################
+#####################################################################
 
-alias w='curl v2.wttr.in'
+shopt -s autocd
+PROMPT_COMMAND='[[ ${__new_wd:=$PWD} != $PWD ]] && ls; __new_wd=$PWD'
+
+
 
 export BIBINPUTS="$BIBINPUTS:${HOME}/bib/"
 
-export PATH=$HOME/.local/bin:$PATH
+export PATH="$HOME/.scripts:$HOME/.local/bin:/mybin:$PATH"
 
 #neofetch
 [ -f "${GHCUP_INSTALL_BASE_PREFIX:=$HOME}/.ghcup/env" ] && source "${GHCUP_INSTALL_BASE_PREFIX:=$HOME}/.ghcup/env"
