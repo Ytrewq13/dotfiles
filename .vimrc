@@ -18,6 +18,7 @@ filetype plugin indent on
 
 set path+=**
 set wildmenu
+set wildignore+=**/.git/**
 
 let g:netrw_banner=0
 let g:netrw_browse_split=4
@@ -60,6 +61,12 @@ set ruler
 
 set ic incsearch
 
+highlight ColorColumn ctermbg=magenta
+call matchadd('ColorColumn', '\%82v', 100)
+
+exec "set listchars=tab:\uBB\uBB,nbsp:~,trail:\uB7"
+set list
+
 execute pathogen#infect()
 call pathogen#helptags()
 map <Leader>o :NERDTreeToggle<CR>
@@ -75,9 +82,12 @@ autocmd FileType java nnoremap <F4> :w<CR>:VimuxRunCommand "mvn clean"<CR>
 autocmd FileType java nnoremap <F5> :w<CR>:VimuxRunCommand "mvn clean test install; java -jar target/*.jar; mvn clean"<CR>
 
 autocmd FileType groff inoremap <Space><Space> <Esc>/<++><CR>c4l
-autocmd FileType groff nnoremap <F2> :w<CR>:VimuxRunCommand "groff -R -t -p -e -ms -Tps *.ms \| ps2pdf - > out.pdf"<CR><CR>
-autocmd FileType groff inoremap <F2> <Esc>:w<CR>:VimuxRunCommand "groff -R -t -p -e -ms -Tps *.ms \| ps2pdf - > out.pdf"<CR><CR>
+autocmd FileType groff nnoremap <F2> :w<CR>:VimuxRunCommand "groff -R -t -p -e -k -ms -Tps <C-R>% > .".expand('%:r').".ps && ps2pdf .".expand('%:r').".ps && mv .".expand('%:r').".pdf ".expand('%:r').".pdf && rm .".expand('%:r').".ps"<CR><CR>
+autocmd FileType groff inoremap <F2> <Esc>:w<CR>:VimuxRunCommand "groff -R -t -p -e -k -ms -Tps <C-R>% > .".expand('%:r').".ps && ps2pdf .".expand('%:r').".ps && mv .".expand('%:r').".pdf ".expand('%:r').".pdf && rm .".expand('%:r').".ps"<CR><CR>
 autocmd FileType groff inoremap ;ms <Esc>:-1read ~/dotfiles/skeleton.ms<CR>ggi<Space><Space>
+
+autocmd FileType markdown nnoremap <F2> :w<CR>:VimuxRunCommand "pandoc --pdf-engine=xelatex -tpdf <C-R>% > .".expand('%:r').".pdf && mv .".expand('%:r').".pdf ".expand('%:r').".pdf"<CR><CR>
+autocmd FileType markdown inoremap <F2> <Esc>:w<CR>:VimuxRunCommand "pandoc --pdf-engine=xelatex -tpdf <C-R>% > .".expand('%:r').".pdf && mv .".expand('%:r').".pdf ".expand('%:r').".pdf"<CR><CR>
 
 autocmd FileType c,cpp nnoremap <F2> :w<CR>:VimuxRunCommand "make"<CR>
 autocmd FileType c,cpp inoremap <F2> <Esc>:w<CR>:VimuxRunCommand "make"<CR>

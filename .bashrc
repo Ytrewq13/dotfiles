@@ -75,7 +75,7 @@ esac
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    alias ls='ls --color=auto'
+    alias ls='exa --color=auto'
     #alias dir='dir --color=auto'
     #alias vdir='vdir --color=auto'
 
@@ -88,11 +88,8 @@ fi
 #export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
 # some more ls aliases
-#alias ll='ls -alF'
 alias ll='exa -aalF'
-#alias la='ls -A'
 alias la='exa -a'
-#alias l='ls -CF'
 alias l='exa -F'
 
 # Add an "alert" alias for long running commands.  Use like so:
@@ -158,13 +155,65 @@ alias svn='svn --config-dir "$XDG_CONFIG_HOME"/subversion'
 export GEM_HOME="$XDG_DATA_HOME"/gem
 export GEM_SPEC_CACHE="$XDG_CACHE_HOME"/gem
 
+# Mutt email client
+alias neomutt='neomutt -F "$XDG_CONFIG_HOME"/mutt/.muttrc'
+alias mutt='neomutt'
+
+#####################################################################
+########################## nnn file browser #########################
+#####################################################################
+
+n ()
+{
+    # Block nesting of nnn in subshells
+    if [ -n $NNNLVL ] && [ "${NNNLVL:-0}" -ge 1 ]; then
+        echo "nnn is already running"
+        return
+    fi
+
+    # The default behaviour is to cd on quit (nnn checks if NNN_TMPFILE is set)
+    # To cd on quit only on ^G, remove the "export" as in:
+    #     NNN_TMPFILE="${XDG_CONFIG_HOME:-$HOME/.config}/nnn/.lastd"
+    # NOTE: NNN_TMPFILE is fixed, should not be modified
+    export NNN_TMPFILE="${XDG_CONFIG_HOME:-$HOME/.config}/nnn/.lastd"
+
+    # Unmask ^Q (, ^V etc.) (if required, see `stty -a`) to Quit nnn
+    # stty start undef
+    # stty stop undef
+    # stty lwrap undef
+    # stty lnext undef
+
+    nnn -e -E "$@"
+
+    if [ -f "$NNN_TMPFILE" ]; then
+            . "$NNN_TMPFILE"
+            rm -f "$NNN_TMPFILE" > /dev/null
+    fi
+}
+
+#################
+## NNN Bookmarks:
+#################
+# u: Uni group project git repo top level
+export NNN_BMS="u:~/Documents/uni_stuff/2/CPP"
+# w: wallpapers
+export NNN_BMS="w:~/Pictures/desktop-backgrounds;$NNN_BMS"
+# D: downloads
+export NNN_BMS="D:~/Downloads;$NNN_BMS"
+# d: documents
+export NNN_BMS="d:~/Documents;$NNN_BMS"
+# h: home
+export NNN_BMS="h:~;$NNN_BMS"
+
 #####################################################################
 ########################### Misc  stuff #############################
 #####################################################################
 
+# Allow typing a directory path to cd (no need to type `cd`).
 shopt -s autocd
-PROMPT_COMMAND='[[ ${__new_wd:=$PWD} != $PWD ]] && ls; __new_wd=$PWD'
 
+# Automatically ls (using `$ exa`) after calling cd (only if the wd changes).
+PROMPT_COMMAND='[[ ${__new_wd:=$PWD} != $PWD ]] && exa; __new_wd=$PWD'
 
 
 export BIBINPUTS="$BIBINPUTS:${HOME}/bib/"
