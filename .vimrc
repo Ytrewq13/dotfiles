@@ -1,3 +1,5 @@
+" TODO: organise this file
+
 set nocompatible
 filetype off
 
@@ -12,13 +14,21 @@ Plugin 'janko/vim-test'
 Plugin 'benmills/vimux'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-surround'
+Plugin 'dense-analysis/ale'
+Plugin 'wesQ3/vim-windowswap'
+Plugin 'lervag/vimtex'
 call vundle#end()
 
 filetype plugin indent on
+syntax on
+
+let mapleader="\\"
+let maplocalleader="\\"
 
 set path+=**
 set wildmenu
 set wildignore+=**/.git/**
+set wildignorecase
 
 let g:netrw_banner=0
 let g:netrw_browse_split=4
@@ -44,15 +54,10 @@ nnoremap <C-P> :tabp<CR>
 "nnoremap <C-S-Y> :tabnew " TODO: find an unused key combination or pick a key
 "sequence for opening new files in tabs.
 
+set tabpagemax=24
+
 set splitbelow
 set splitright
-
-call plug#begin('~/.vim/plugged')
-" A Vim Plugin for Lively Previewing LaTeX PDF Output
-Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
-Plug 'junegunn/fzf.vim'
-call plug#end()
 
 au BufNewFile,BufRead *.ms set filetype=groff
 
@@ -75,7 +80,15 @@ map ; :Files<CR>
 
 noremap <F3> :Autoformat<CR>:w<CR>
 
+nnoremap <silent> <Leader>c :setlocal spell!<CR>
+
 set showcmd
+
+"let g:ale_linters = {'haskell': ['cabal_ghc', 'ghc-mod', 'hdevtools', 'hie', 'hlint', 'stack_build', 'stack_ghc']}
+
+autocmd BufRead,BufNewFile *.h set filetype=c
+
+let g:ale_c_parse_makefile = 1
 
 autocmd FileType java nnoremap <F2> :w<CR>:Java<CR>
 autocmd FileType java nnoremap <F4> :w<CR>:VimuxRunCommand "mvn clean"<CR>
@@ -86,8 +99,9 @@ autocmd FileType groff nnoremap <F2> :w<CR>:VimuxRunCommand "groff -R -t -p -e -
 autocmd FileType groff inoremap <F2> <Esc>:w<CR>:VimuxRunCommand "groff -R -t -p -e -k -ms -Tps <C-R>% > .".expand('%:r').".ps && ps2pdf .".expand('%:r').".ps && mv .".expand('%:r').".pdf ".expand('%:r').".pdf && rm .".expand('%:r').".ps"<CR><CR>
 autocmd FileType groff inoremap ;ms <Esc>:-1read ~/dotfiles/skeleton.ms<CR>ggi<Space><Space>
 
-autocmd FileType markdown nnoremap <F2> :w<CR>:VimuxRunCommand "pandoc --pdf-engine=xelatex -tpdf <C-R>% > .".expand('%:r').".pdf && mv .".expand('%:r').".pdf ".expand('%:r').".pdf"<CR><CR>
-autocmd FileType markdown inoremap <F2> <Esc>:w<CR>:VimuxRunCommand "pandoc --pdf-engine=xelatex -tpdf <C-R>% > .".expand('%:r').".pdf && mv .".expand('%:r').".pdf ".expand('%:r').".pdf"<CR><CR>
+" TODO: use job_start instead of VimuxRunCommand for all relevant bindings
+autocmd FileType markdown nnoremap <F2> :w<CR>:call job_start(['/bin/sh', '-c', "pandoc --pdf-engine=xelatex -tpdf <C-R>% > .".expand('%:r').".pdf && mv .".expand('%:r').".pdf ".expand('%:r').".pdf"])<CR>
+autocmd FileType markdown imap <F2> <Esc><F2>
 
 autocmd FileType c,cpp nnoremap <F2> :w<CR>:VimuxRunCommand "make"<CR>
 autocmd FileType c,cpp inoremap <F2> <Esc>:w<CR>:VimuxRunCommand "make"<CR>
@@ -112,18 +126,17 @@ autocmd FileType html,php inoremap ;li <li><++></li><++><Esc>^/<++><CR>c4l
 
 let g:tex_flavor = "latex"
 
-autocmd FileType tex nnoremap <F2> :w<CR>:call VimuxRunCommand("pdflatex --enable-write18 -interaction=nonstopmode " . bufname("%") . ";bibtex " . expand("%:t:r") . ".aux;pdflatex --enable-write18 -interaction=nonstopmode " . bufname("%") . ";pdflatex --enable-write18 -interaction=nonstopmode " . bufname("%") . ";/usr/bin/rm *.toc *.log *.aux *.out *.nav *.snm *.blg *.bbl")<CR><CR>
-autocmd FileType tex inoremap <F2> <Esc>:w<CR>:call VimuxRunCommand("pdflatex --enable-write18 -interaction=nonstopmode " . bufname("%") . ";bibtex " . expand("%:t:r") . ".aux;pdflatex --enable-write18 -interaction=nonstopmode " . bufname("%") . ";pdflatex --enable-write18 -interaction=nonstopmode " . bufname("%") . ";/usr/bin/rm *.toc *.log *.aux *.out *.nav *.snm *.blg *.bbl")<CR><CR>
+" autocmd FileType tex nnoremap <F2> :w<CR>:call job_start(['/bin/sh', '-c', "latexmk -pdfxe -quiet " . bufname("%") . ";latexmk -c -quiet " . bufname("%")])<CR><CR>
+autocmd FileType tex nnoremap <F2> :w<CR>:call VimuxRunCommand("latexmk -pdfxe -quiet " . bufname("%") . ";latexmk -c -quiet " . bufname("%"))<CR><CR>
+autocmd FileType tex inoremap <F2> <Esc><F2>
 
-autocmd FileType tex inoremap ;tex <Esc>:-1read ~/dotfiles/skeleton.tex<CR>i
-autocmd FileType tex inoremap ;sec \section{<++>}<CR><++><Esc>kI<Space><Space>
-autocmd FileType tex inoremap ;ssec \subsection{<++>}<CR><++><Esc>kI<Space><Space>
-autocmd FileType tex inoremap ;sssec \subsubsection{<++>}<CR><++><Esc>kI<Space><Space>
-autocmd FileType tex inoremap ;img \includegraphics[<++>]{<++>}<Esc>I<Space><Space>
-autocmd FileType tex inoremap ;ctr \centering{<++>}<CR><++><Esc>kI<Space><Space>
-autocmd FileType tex inoremap ;bfs \bfseries{<++>}<++>I<Space><Space>
-autocmd FileType tex inoremap ;ref \ref{<++>}<++>I<Space><Space>
-autocmd FileType tex inoremap ;cite \cite{<++>}<++>I<Space><Space>
+let g:ale_pattern_options = {
+\   '.*\.tex$': {'ale_enabled': 0},
+\}
+
+let g:ale_linters = {
+            \ 'c': ['gcc', 'clangtidy'],
+            \}
 
 autocmd FileType python inoremap ;f def <++>(<++>):<CR><++><Esc>k15hi
 
