@@ -14,6 +14,7 @@ Plugin 'janko/vim-test'
 Plugin 'benmills/vimux'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-repeat'
 Plugin 'dense-analysis/ale'
 Plugin 'wesQ3/vim-windowswap'
 Plugin 'lervag/vimtex'
@@ -95,8 +96,8 @@ autocmd FileType java nnoremap <F4> :w<CR>:VimuxRunCommand "mvn clean"<CR>
 autocmd FileType java nnoremap <F5> :w<CR>:VimuxRunCommand "mvn clean test install; java -jar target/*.jar; mvn clean"<CR>
 
 autocmd FileType groff inoremap <Space><Space> <Esc>/<++><CR>c4l
-autocmd FileType groff nnoremap <F2> :w<CR>:VimuxRunCommand "groff -R -t -p -e -k -ms -Tps <C-R>% > .".expand('%:r').".ps && ps2pdf .".expand('%:r').".ps && mv .".expand('%:r').".pdf ".expand('%:r').".pdf && rm .".expand('%:r').".ps"<CR><CR>
-autocmd FileType groff inoremap <F2> <Esc>:w<CR>:VimuxRunCommand "groff -R -t -p -e -k -ms -Tps <C-R>% > .".expand('%:r').".ps && ps2pdf .".expand('%:r').".ps && mv .".expand('%:r').".pdf ".expand('%:r').".pdf && rm .".expand('%:r').".ps"<CR><CR>
+autocmd FileType groff nnoremap <F2> :w<CR>:call job_start(['/bin/sh', '-c', "groff -R -t -p -e -k -ms -Tps <C-R>% \| ps2pdf - ".expand('%:r').".pdf"])<CR><CR>
+autocmd FileType groff inoremap <F2> <Esc><F2>
 autocmd FileType groff inoremap ;ms <Esc>:-1read ~/dotfiles/skeleton.ms<CR>ggi<Space><Space>
 
 " TODO: use job_start instead of VimuxRunCommand for all relevant bindings
@@ -129,6 +130,12 @@ let g:tex_flavor = "latex"
 " autocmd FileType tex nnoremap <F2> :w<CR>:call job_start(['/bin/sh', '-c', "latexmk -pdfxe -quiet " . bufname("%") . ";latexmk -c -quiet " . bufname("%")])<CR><CR>
 autocmd FileType tex nnoremap <F2> :w<CR>:call VimuxRunCommand("latexmk -pdfxe -quiet " . bufname("%") . ";latexmk -c -quiet " . bufname("%"))<CR><CR>
 autocmd FileType tex inoremap <F2> <Esc><F2>
+
+augroup VimCompletesMeTex
+    autocmd!
+    autocmd FileType tex
+        \ let b:vcm_omni_pattern = g:vimtex#re#neocomplete
+  augroup END
 
 let g:ale_pattern_options = {
 \   '.*\.tex$': {'ale_enabled': 0},

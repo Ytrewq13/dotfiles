@@ -3,6 +3,9 @@ alias gs='git status'
 alias gp='git push'
 alias gb='git branch'
 
+alias humbytes='numfmt --to=iec-i --format %.2fB'
+alias humbytes10='numfmt --to=si --format %.2fB'
+
 # Calculator - use math library by default
 alias bc='bc -l'
 
@@ -33,7 +36,7 @@ alias fastping='ping -c 100 -i.2'
 
 # Word count lines
 alias lc='wc -l'
-llc() { [ -n "$1" ] && { ls "$1" | wc -l; } || { ls | wc -l; }; }
+llc() { [ -n "$1" ] && { ls -a "$1" | wc -l; } || { ls -a | wc -l; }; }
 
 # Custom alerts
 # low urgency
@@ -83,7 +86,7 @@ alias rm='rm -I --preserve-root'
 # Use absolute path /usr/bin/rm in scripts
 
 
-alias vim="vim -u $DOTFILES/.vimrc"
+alias vim="vim -u $DOTFILES/.vimrc -i $XDG_CACHE_HOME/.viminfo"
 
 alias tmux="tmux -f $XDG_CONFIG_HOME/tmux.conf"
 

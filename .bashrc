@@ -1,10 +1,13 @@
-#!/bun/bash
+#!/bin/bash
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
+# shellcheck source=/home/sam/.dotfiles/xdgdirs
+
 # TODO: move dotfiles directory out of home dir (put it in ~/.config ?)
 export DOTFILES="$HOME/.dotfiles"
+[ -f "$DOTFILES/xdgdirs" ] && . "$DOTFILES/xdgdirs"
 
 # If not running interactively, don't do anything
 case $- in
@@ -129,10 +132,6 @@ fi
 ######################
 ######################
 
-export XDG_CONFIG_HOME="$HOME"/.config
-export XDG_DATA_HOME="$HOME"/.local/share
-export XDG_CACHE_HOME="$HOME"/.cache
-
 # Alias definitions.
 # You may want to put all your additions into a separate file like
 # ~/.bash_aliases, instead of adding them here directly.
@@ -246,3 +245,5 @@ export PATH="$HOME/.scripts:$HOME/.local/bin:/mybin:$PATH"
 #neofetch
 # shellcheck source=/dev/null
 [ -f "${GHCUP_INSTALL_BASE_PREFIX:=$HOME}/.ghcup/env" ] && source "${GHCUP_INSTALL_BASE_PREFIX:=$HOME}/.ghcup/env"
+
+eval "$(starship init bash)"
