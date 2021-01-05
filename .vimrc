@@ -105,17 +105,9 @@ autocmd FileType java nnoremap <F5> :w<CR>:VimuxRunCommand "mvn clean test insta
 autocmd FileType groff inoremap <Space><Space> <Esc>/<++><CR>c4l
 autocmd FileType groff nnoremap <F2> :w<CR>:call job_start(['/bin/sh', '-c', "groff -R -t -p -e -k -ms -Tps <C-R>% \| ps2pdf - ".expand('%:r').".pdf"])<CR><CR>
 autocmd FileType groff inoremap <F2> <Esc><F2>
-autocmd FileType groff inoremap ;ms <Esc>:-1read ~/dotfiles/skeleton.ms<CR>ggi<Space><Space>
 
-" TODO: use job_start instead of VimuxRunCommand for all relevant bindings
 autocmd FileType markdown nnoremap <F2> :w<CR>:call job_start(['/bin/sh', '-c', "pandoc --pdf-engine=xelatex -tpdf <C-R>% > .".expand('%:r').".pdf && mv .".expand('%:r').".pdf ".expand('%:r').".pdf"])<CR>
 autocmd FileType markdown imap <F2> <Esc><F2>
-
-autocmd FileType c,cpp nnoremap <F2> :w<CR>:VimuxRunCommand "make"<CR>
-autocmd FileType c,cpp inoremap <F2> <Esc>:w<CR>:VimuxRunCommand "make"<CR>
-autocmd FileType c,cpp nnoremap <F3> :w<CR>:VimuxRunCommand "make clean"<CR>
-autocmd FileType c,cpp inoremap <F3> <Esc>:w<CR>:VimuxRunCommand "make clean"<CR>
-autocmd FileType c,cpp noremap <F4> :Autoformat<CR>:w<CR>
 
 
 autocmd FileType html,tex,python,c,perl,js,php,java inoremap <Space><Space> <Esc>/<++><CR>c4l
