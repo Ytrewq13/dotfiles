@@ -51,8 +51,8 @@ alias v='mpv'
 alias vs='mpv --shuffle'
 
 # Play video files in terminal as ASCII
-alias vtrm='CACA_DRIVER=ncurses mpv -vo=caca --quiet'
-alias vstrm='CACA_DRIVER=ncurses mpv -vo=caca --quiet --shuffle'
+alias vt='CACA_DRIVER=ncurses mpv -vo=caca --quiet'
+alias vst='CACA_DRIVER=ncurses mpv -vo=caca --quiet --shuffle'
 
 # Watch ~/Downloads/ contents
 alias wdl='watch -t -n0.1 --color "ls ~/Downloads --color"'

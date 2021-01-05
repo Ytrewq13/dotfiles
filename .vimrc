@@ -55,6 +55,13 @@ nnoremap <C-P> :tabp<CR>
 "nnoremap <C-S-Y> :tabnew " TODO: find an unused key combination or pick a key
 "sequence for opening new files in tabs.
 
+vmap <expr> <LEFT>  DVB_Drag('left')
+vmap <expr> <RIGHT> DVB_Drag('right')
+vmap <expr> <DOWN>  DVB_Drag('down')
+vmap <expr> <UP>    DVB_Drag('up')
+vmap <expr> D       DVB_Duplicate()
+let g:DVB_TrimWS = 1
+
 set tabpagemax=24
 
 set splitbelow
@@ -113,17 +120,6 @@ autocmd FileType c,cpp noremap <F4> :Autoformat<CR>:w<CR>
 
 autocmd FileType html,tex,python,c,perl,js,php,java inoremap <Space><Space> <Esc>/<++><CR>c4l
 
-autocmd FileType html,php inoremap ;html <Esc>:-1read ~/dotfiles/skeleton.html<CR>kddi
-autocmd FileType html,php inoremap ;p <p><CR><++><CR></p><CR><++><Esc>3k^/<++><CR>c4l<Tab>
-autocmd FileType html,php inoremap ;div <div><CR><++><CR></div><CR><++><Esc>3k^/<++><CR>c4l<Tab>
-autocmd FileType html,php inoremap ;span <span><CR><++><CR></span><CR><++><Esc>3k^/<++><CR>c4l<Tab>
-autocmd FileType html,php inoremap ;h1 <h1><++></h1><++><Esc>^/<++><CR>c4l
-autocmd FileType html,php inoremap ;h2 <h2><++></h2><++><Esc>^/<++><CR>c4l
-autocmd FileType html,php inoremap ;h3 <h3><++></h3><++><Esc>^/<++><CR>c4l
-autocmd FileType html,php inoremap ;img <img src='<++>'><++></img><++><Esc>^/<++><CR>c4l
-autocmd FileType html,php inoremap ;a <a href='<++>'><++></a><++><Esc>^/<++><CR>c4l
-autocmd FileType html,php inoremap ;ul <CR><ul><CR><++><CR></ul><++><Esc>3k^/<++><CR>c4l
-autocmd FileType html,php inoremap ;li <li><++></li><++><Esc>^/<++><CR>c4l
 
 let g:tex_flavor = "latex"
 
@@ -145,26 +141,10 @@ let g:ale_linters = {
             \ 'c': ['gcc', 'clangtidy'],
             \}
 
-autocmd FileType python inoremap ;f def <++>(<++>):<CR><++><Esc>k15hi
-
-autocmd FileType c inoremap ;f <++> <++>(<++>)<CR>{<CR><++><CR>}<++><Esc>3k15hi
-autocmd FileType c inoremap ;main int main(int argc, char **argv)<CR>{<CR><++><CR>return 0;<CR>}<Esc>2kI<Space><Space>
-autocmd FileType c inoremap ;for int i;<CR>for (i = 0; i < <++>; i++)<CR>{<CR><++><CR>}<CR><++><Esc>4kI<Space><Space>
-
-autocmd FileType java inoremap ;main public static void main(String[] args)<CR>{<CR><++><CR>}<Esc>kI<Space><Space>
-autocmd FileType java inoremap ;pub public <++> <++>(<++>)<CR>{<CR><++><CR>}<CR><++><Esc>4k22hi
-autocmd FileType java inoremap ;priv private <++> <++>(<++>)<CR>{<CR><++><CR>}<CR><++><Esc>4k23hi
-autocmd FileType java inoremap ;for for (int i = 0; i < <++>; i++)<CR>{<CR><++><CR>}<Esc>3kI<Space><Space>
-
-autocmd FileType java,c inoremap ;while while (<++>)<CR>{<CR><++><CR>}<Esc>3kI<Space><Space>
 
 nnoremap <Left> <nop>
-vnoremap <Left> <nop>
 nnoremap <Up> <nop>
-vnoremap <Up> <nop>
 nnoremap <Right> <nop>
-vnoremap <Right> <nop>
 nnoremap <Down> <nop>
-vnoremap <Down> <nop>
 
 colorscheme ron
