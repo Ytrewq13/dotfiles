@@ -20,6 +20,13 @@ Plugin 'wesQ3/vim-windowswap'
 Plugin 'lervag/vimtex'
 call vundle#end()
 
+
+augroup VimReload
+    autocmd!
+    autocmd BufWritePost  $MYVIMRC  source $MYVIMRC
+augroup END
+
+
 filetype plugin indent on
 syntax on
 
@@ -69,7 +76,7 @@ set splitright
 
 au BufNewFile,BufRead *.ms set filetype=groff
 
-set number! relativenumber!
+set number relativenumber
 set ruler
 
 set ic incsearch
@@ -98,10 +105,6 @@ autocmd BufRead,BufNewFile *.h set filetype=c
 
 let g:ale_c_parse_makefile = 1
 
-autocmd FileType java nnoremap <F2> :w<CR>:Java<CR>
-autocmd FileType java nnoremap <F4> :w<CR>:VimuxRunCommand "mvn clean"<CR>
-autocmd FileType java nnoremap <F5> :w<CR>:VimuxRunCommand "mvn clean test install; java -jar target/*.jar; mvn clean"<CR>
-
 autocmd FileType groff inoremap <Space><Space> <Esc>/<++><CR>c4l
 autocmd FileType groff nnoremap <F2> :w<CR>:call job_start(['/bin/sh', '-c', "groff -R -t -p -e -k -ms -Tps <C-R>% \| ps2pdf - ".expand('%:r').".pdf"])<CR><CR>
 autocmd FileType groff inoremap <F2> <Esc><F2>
@@ -110,11 +113,13 @@ autocmd FileType markdown nnoremap <F2> :w<CR>:call job_start(['/bin/sh', '-c', 
 autocmd FileType markdown imap <F2> <Esc><F2>
 
 
-autocmd FileType html,tex,python,c,perl,js,php,java inoremap <Space><Space> <Esc>/<++><CR>c4l
+autocmd FileType html,tex,python,c,perl,js,php,java,make,cmake inoremap <Space><Space> <Esc>/<++><CR>c4l
 
 
 let g:tex_flavor = "latex"
 
+" TODO: figure out async tex compilation (with job_start or otherwise)
+" vimtex may be able to do this with the right config and its :VimTexCompile
 " autocmd FileType tex nnoremap <F2> :w<CR>:call job_start(['/bin/sh', '-c', "latexmk -pdfxe -quiet " . bufname("%") . ";latexmk -c -quiet " . bufname("%")])<CR><CR>
 autocmd FileType tex nnoremap <F2> :w<CR>:call VimuxRunCommand("latexmk -pdfxe -quiet " . bufname("%") . ";latexmk -c -quiet " . bufname("%"))<CR><CR>
 autocmd FileType tex inoremap <F2> <Esc><F2>
@@ -133,6 +138,8 @@ let g:ale_linters = {
             \ 'c': ['gcc', 'clangtidy'],
             \}
 
+xmap <silent><expr>  ++  VMATH_YankAndAnalyse()
+nmap <silent>        ++  vip++
 
 nnoremap <Left> <nop>
 nnoremap <Up> <nop>

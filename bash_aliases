@@ -3,6 +3,7 @@ alias gs='git status'
 alias gp='git push'
 alias gb='git branch'
 
+# Human-readable bytes formatting, binary and decimal numbering (2^10, 10^3)
 alias humbytes='numfmt --to=iec-i --format %.2fB'
 alias humbytes10='numfmt --to=si --format %.2fB'
 
@@ -10,6 +11,9 @@ alias humbytes10='numfmt --to=si --format %.2fB'
 alias bc='bc -l'
 
 alias latexmk="latexmk -r $XDG_CONFIG_HOME/latexmkrc"
+
+# Replace build directory - used for testing a CMakeLists.txt file
+alias build='rm -rf build/ && mkdir build'
 
 # mkdir: --verbose --parent
 alias mkdir='mkdir -pv'
@@ -86,7 +90,7 @@ alias rm='rm -I --preserve-root'
 # Use absolute path /usr/bin/rm in scripts
 
 
-alias vim="vim -u $DOTFILES/.vimrc -i $XDG_CACHE_HOME/.viminfo"
+alias vim="vim -i $XDG_CACHE_HOME/.viminfo"
 
 alias tmux="tmux -f $XDG_CONFIG_HOME/tmux.conf"
 
@@ -100,7 +104,6 @@ alias YT='straw-viewer'
 function hexd () {
     hexdump -C "$1" | less
 }
-
 alias hexdump='hexd'
 
 alias words='cat /usr/share/dict/words'
