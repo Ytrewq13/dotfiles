@@ -21,6 +21,12 @@ Plugin 'lervag/vimtex'
 call vundle#end()
 
 
+call plug#begin('~/.vim/plugged')
+"Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+call plug#end()
+
+
 augroup VimReload
     autocmd!
     autocmd BufWritePost  $MYVIMRC  source $MYVIMRC
