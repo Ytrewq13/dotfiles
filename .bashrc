@@ -247,3 +247,6 @@ export PATH="$HOME/.scripts:$HOME/.local/bin:/mybin:$PATH"
 [ -f "${GHCUP_INSTALL_BASE_PREFIX:=$HOME}/.ghcup/env" ] && source "${GHCUP_INSTALL_BASE_PREFIX:=$HOME}/.ghcup/env"
 
 eval "$(starship init bash)"
+
+source /usr/share/fzf/completion.bash
+source /usr/share/fzf/key-bindings.bash
