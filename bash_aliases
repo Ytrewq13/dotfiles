@@ -12,8 +12,8 @@ alias bc='bc -l'
 
 alias latexmk="latexmk -r $XDG_CONFIG_HOME/latexmkrc"
 
-# Replace build directory - used for testing a CMakeLists.txt file
-alias build='rm -rf build/ && mkdir build'
+# Search the available pkg-conf packages using fzf
+alias pkgs='pkgconf --list-all | fzf --tiebreak=begin'
 
 # mkdir: --verbose --parent
 alias mkdir='mkdir -pv'

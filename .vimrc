@@ -3,6 +3,12 @@
 set nocompatible
 filetype off
 
+augroup VimReload
+    autocmd!
+    autocmd BufWritePost  $MYVIMRC  source $MYVIMRC
+augroup END
+
+
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 " let Vundle manage Vundle, required
@@ -22,15 +28,11 @@ call vundle#end()
 
 
 call plug#begin('~/.vim/plugged')
-"Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
+Plug 'airblade/vim-rooter'
 call plug#end()
 
-
-augroup VimReload
-    autocmd!
-    autocmd BufWritePost  $MYVIMRC  source $MYVIMRC
-augroup END
+let g:rooter_silent_chdir = 1
 
 
 filetype plugin indent on
