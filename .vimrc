@@ -32,6 +32,8 @@ Plug 'junegunn/fzf.vim'
 Plug 'airblade/vim-rooter'
 call plug#end()
 
+let $FZF_DEFAULT_COMMAND = 'ag -g ""'
+
 let g:rooter_silent_chdir = 1
 
 
