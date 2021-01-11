@@ -13,10 +13,7 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
-Plugin 'Chiel92/vim-autoformat'
-Plugin 'jvenant/vim-java-imports'
 Plugin 'ap/vim-css-color'
-Plugin 'janko/vim-test'
 Plugin 'benmills/vimux'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-surround'
