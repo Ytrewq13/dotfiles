@@ -64,9 +64,15 @@ alias wdl='watch -t -n0.1 --color "ls ~/Downloads --color"'
 # Watch sensor info
 alias wsens='watch -t -n0.1 sensors'
 
+function vlens () {
+    find . -type f \( -iname "*.mp4" -o -iname "*.mkv" \) |
+        tr '\n' '\0' |
+        xargs -L1 -0 ffprobe -v error -show_entries format=duration -of default=noprint_wrappers=1:nokey=1
+}
+
 # Get video duration
 alias vidlen='ffprobe -v error -show_entries format=duration -of default=noprint_wrappers=1:nokey=1'
-alias vidlens='for f in *; do vidlen "$f"; done'
+alias vidlens='vlens'
 
 # Get video information
 alias vidinfo='ffprobe -v error -select_streams v -show_entries stream=width,height,r_frame_rate:format=duration -of default=noprint_wrappers=1 -sexagesimal'

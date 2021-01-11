@@ -90,6 +90,7 @@ set number relativenumber
 set ruler
 
 set ic incsearch
+set smartcase
 
 highlight ColorColumn ctermbg=magenta
 call matchadd('ColorColumn', '\%82v', 100)
