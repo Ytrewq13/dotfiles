@@ -97,11 +97,8 @@ set list
 
 execute pathogen#infect()
 call pathogen#helptags()
-map <Leader>o :NERDTreeToggle<CR>
 
 map ; :Files<CR>
-
-noremap <F3> :Autoformat<CR>:w<CR>
 
 nnoremap <silent> <Leader>c :setlocal spell!<CR>
 
