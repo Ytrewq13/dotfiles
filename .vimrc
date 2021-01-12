@@ -110,24 +110,24 @@ autocmd BufRead,BufNewFile *.h set filetype=c
 
 let g:ale_c_parse_makefile = 1
 
-autocmd FileType groff inoremap <Space><Space> <Esc>/<++><CR>c4l
-autocmd FileType groff nnoremap <F2> :w<CR>:call job_start(['/bin/sh', '-c', "groff -R -t -p -e -k -ms -Tps <C-R>% \| ps2pdf - ".expand('%:r').".pdf"])<CR><CR>
-autocmd FileType groff inoremap <F2> <Esc><F2>
+autocmd FileType groff inoremap <buffer> <Space><Space> <Esc>/<++><CR>c4l
+autocmd FileType groff nnoremap <buffer> <F2> :w<CR>:call job_start(['/bin/sh', '-c', "groff -R -t -p -e -k -ms -Tps <C-R>% \| ps2pdf - ".expand('%:r').".pdf"])<CR><CR>
+autocmd FileType groff inoremap <buffer> <F2> <Esc><F2>
 
-autocmd FileType markdown nnoremap <F2> :w<CR>:call job_start(['/bin/sh', '-c', "pandoc --pdf-engine=xelatex -tpdf <C-R>% > .".expand('%:r').".pdf && mv .".expand('%:r').".pdf ".expand('%:r').".pdf"])<CR>
-autocmd FileType markdown imap <F2> <Esc><F2>
+autocmd FileType markdown nnoremap <buffer> <F2> :w<CR>:call job_start(['/bin/sh', '-c', "pandoc --pdf-engine=xelatex -tpdf <C-R>% > .".expand('%:r').".pdf && mv .".expand('%:r').".pdf ".expand('%:r').".pdf"])<CR>
+autocmd FileType markdown inoremap <buffer> <F2> <Esc><F2>
 
 
-autocmd FileType html,tex,python,c,perl,js,php,java,make,cmake inoremap <Space><Space> <Esc>/<++><CR>c4l
+autocmd FileType html,tex,python,c,perl,js,php,java,make,cmake inoremap <buffer> <Space><Space> <Esc>/<++><CR>c4l
 
 
 let g:tex_flavor = "latex"
 
 " TODO: figure out async tex compilation (with job_start or otherwise)
 " vimtex may be able to do this with the right config and its :VimTexCompile
-" autocmd FileType tex nnoremap <F2> :w<CR>:call job_start(['/bin/sh', '-c', "latexmk -pdfxe -quiet " . bufname("%") . ";latexmk -c -quiet " . bufname("%")])<CR><CR>
-autocmd FileType tex nnoremap <F2> :w<CR>:call VimuxRunCommand("latexmk -pdfxe -quiet " . bufname("%") . ";latexmk -c -quiet " . bufname("%"))<CR><CR>
-autocmd FileType tex inoremap <F2> <Esc><F2>
+" autocmd FileType tex nnoremap <buffer> <F2> :w<CR>:call job_start(['/bin/sh', '-c', "latexmk -pdfxe -quiet " . bufname("%") . ";latexmk -c -quiet " . bufname("%")])<CR><CR>
+autocmd FileType tex nnoremap <buffer> <F2> :w<CR>:call VimuxRunCommand("latexmk -pdfxe -quiet " . bufname("%") . ";latexmk -c -quiet " . bufname("%"))<CR><CR>
+autocmd FileType tex inoremap <buffer> <F2> <Esc><F2>
 
 augroup VimCompletesMeTex
     autocmd!
