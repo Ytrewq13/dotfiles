@@ -1,4 +1,9 @@
 " TODO: organise this file
+" Move parts into seperate files:
+"   - Keybinds          (  keybinds.vim )
+"   - Plugins           (  plugins.vim  )
+"   - Plugin configs    (  plugconf.vim )
+"   - Other configs     (  Leave here   )
 
 set nocompatible
 filetype off
@@ -21,6 +26,9 @@ Plugin 'tpope/vim-repeat'
 Plugin 'dense-analysis/ale'
 Plugin 'wesQ3/vim-windowswap'
 Plugin 'lervag/vimtex'
+Plugin 'ggvgc/vim-fuzzysearch'
+Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
 call vundle#end()
 
 
@@ -30,6 +38,24 @@ Plug 'airblade/vim-rooter'
 call plug#end()
 
 let $FZF_DEFAULT_COMMAND = 'ag -g ""'
+
+let g:fuzzysearch_match_spaces=1
+let g:fuzzysearch_hlsearch=1
+let g:fuzzysearch_ignorecase=1
+" Fuzzy search the current file with <C-/> (vim registers this as <C-_>)
+nnoremap <C-_> :FuzzySearch<CR>
+
+
+" UltiSnips configuration
+let g:UltiSnipsSnippetsDir="~/.vim/UltiSnips"
+let g:UltiSnipsExpandTrigger="<C-S>"
+let g:UltiSnipsJumpForwardTrigger="<c-j>"
+let g:UltiSnipsJumpBackwardTrigger="<c-k>"
+" Snippet name information (to fill in on certain snippets which use them)
+let g:snips_author="Sam Whitehead"
+let g:snips_email="sam.everythingcomputers@gmail.com"
+let g:snips_github="https://github.com/Ytrewq13"
+
 
 let g:rooter_silent_chdir = 1
 
@@ -66,8 +92,8 @@ nnoremap <C-H> <C-W><C-H>
 
 nnoremap <C-N> :tabn<CR>
 nnoremap <C-P> :tabp<CR>
-"nnoremap <C-S-Y> :tabnew " TODO: find an unused key combination or pick a key
-"sequence for opening new files in tabs.
+nnoremap <C-T> :tabnew<CR>
+
 
 vmap <expr> <LEFT>  DVB_Drag('left')
 vmap <expr> <RIGHT> DVB_Drag('right')
@@ -98,7 +124,10 @@ set list
 execute pathogen#infect()
 call pathogen#helptags()
 
-map ; :Files<CR>
+"map ; :Files<CR>
+nnoremap <C-f> :Files<CR>
+nnoremap <C-g> :Ag<CR>
+inoremap <C-S-s> <Esc>:Snippets<CR>
 
 nnoremap <silent> <Leader>c :setlocal spell!<CR>
 
@@ -123,10 +152,8 @@ autocmd FileType html,tex,python,c,perl,js,php,java,make,cmake inoremap <buffer>
 
 let g:tex_flavor = "latex"
 
-" TODO: figure out async tex compilation (with job_start or otherwise)
-" vimtex may be able to do this with the right config and its :VimTexCompile
-" autocmd FileType tex nnoremap <buffer> <F2> :w<CR>:call job_start(['/bin/sh', '-c', "latexmk -pdfxe -quiet " . bufname("%") . ";latexmk -c -quiet " . bufname("%")])<CR><CR>
-autocmd FileType tex nnoremap <buffer> <F2> :w<CR>:call VimuxRunCommand("latexmk -pdfxe -quiet " . bufname("%") . ";latexmk -c -quiet " . bufname("%"))<CR><CR>
+" Compile latex documents asynchronously with Vimtex
+autocmd FileType tex nnoremap <buffer> <F2> :w<CR>:VimtexCompileSS<CR>
 autocmd FileType tex inoremap <buffer> <F2> <Esc><F2>
 
 augroup VimCompletesMeTex
