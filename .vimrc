@@ -48,9 +48,10 @@ nnoremap <C-_> :FuzzySearch<CR>
 
 " UltiSnips configuration
 let g:UltiSnipsSnippetsDir="~/.vim/UltiSnips"
-let g:UltiSnipsExpandTrigger="<C-S>"
+let g:UltiSnipsExpandTrigger="<C-s>"
 let g:UltiSnipsJumpForwardTrigger="<c-j>"
 let g:UltiSnipsJumpBackwardTrigger="<c-k>"
+inoremap <F5> <Esc>:Snippets<CR>
 " Snippet name information (to fill in on certain snippets which use them)
 let g:snips_author="Sam Whitehead"
 let g:snips_email="sam.everythingcomputers@gmail.com"
@@ -127,7 +128,6 @@ call pathogen#helptags()
 "map ; :Files<CR>
 nnoremap <C-f> :Files<CR>
 nnoremap <C-g> :Ag<CR>
-inoremap <C-S-s> <Esc>:Snippets<CR>
 
 nnoremap <silent> <Leader>c :setlocal spell!<CR>
 
@@ -153,14 +153,28 @@ autocmd FileType html,tex,python,c,perl,js,php,java,make,cmake inoremap <buffer>
 let g:tex_flavor = "latex"
 
 " Compile latex documents asynchronously with Vimtex
-autocmd FileType tex nnoremap <buffer> <F2> :w<CR>:VimtexCompileSS<CR>
+autocmd FileType tex nnoremap <buffer> <F2> :w<CR>:VimtexCompile<CR>
+autocmd FileType tex nnoremap <buffer> <F3> :w<CR>:VimtexClean<CR>
 autocmd FileType tex inoremap <buffer> <F2> <Esc><F2>
 
 augroup VimCompletesMeTex
     autocmd!
     autocmd FileType tex
         \ let b:vcm_omni_pattern = g:vimtex#re#neocomplete
-  augroup END
+augroup END
+
+augroup vimtex_config
+  autocmd!
+  autocmd User VimtexQuit call vimtex#latexmk#clean(0)
+augroup END
+
+let g:vimtex_compiler_latexmk = {
+    \ 'options' : [
+    \   '-verbose',
+    \   '-file-line-error',
+    \   '-interaction=nonstopmode',
+    \ ],
+    \}
 
 let g:ale_pattern_options = {
 \   '.*\.tex$': {'ale_enabled': 0},
