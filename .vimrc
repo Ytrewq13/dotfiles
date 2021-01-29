@@ -26,7 +26,6 @@ Plugin 'tpope/vim-repeat'
 Plugin 'dense-analysis/ale'
 Plugin 'wesQ3/vim-windowswap'
 Plugin 'lervag/vimtex'
-Plugin 'ggvgc/vim-fuzzysearch'
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
 call vundle#end()
@@ -39,11 +38,8 @@ call plug#end()
 
 let $FZF_DEFAULT_COMMAND = 'ag -g ""'
 
-let g:fuzzysearch_match_spaces=1
-let g:fuzzysearch_hlsearch=1
-let g:fuzzysearch_ignorecase=1
 " Fuzzy search the current file with <C-/> (vim registers this as <C-_>)
-nnoremap <C-_> :FuzzySearch<CR>
+nnoremap <C-_> :BLines<CR>
 
 
 " UltiSnips configuration
@@ -133,13 +129,12 @@ nnoremap <silent> <Leader>c :setlocal spell!<CR>
 
 set showcmd
 
-"let g:ale_linters = {'haskell': ['cabal_ghc', 'ghc-mod', 'hdevtools', 'hie', 'hlint', 'stack_build', 'stack_ghc']}
 
 autocmd BufRead,BufNewFile *.h set filetype=c
 
 let g:ale_c_parse_makefile = 1
 
-autocmd FileType groff inoremap <buffer> <Space><Space> <Esc>/<++><CR>c4l
+"autocmd FileType groff inoremap <buffer> <Space><Space> <Esc>/<++><CR>c4l
 autocmd FileType groff nnoremap <buffer> <F2> :w<CR>:call job_start(['/bin/sh', '-c', "groff -R -t -p -e -k -ms -Tps <C-R>% \| ps2pdf - ".expand('%:r').".pdf"])<CR><CR>
 autocmd FileType groff inoremap <buffer> <F2> <Esc><F2>
 
@@ -147,7 +142,7 @@ autocmd FileType markdown nnoremap <buffer> <F2> :w<CR>:call job_start(['/bin/sh
 autocmd FileType markdown inoremap <buffer> <F2> <Esc><F2>
 
 
-autocmd FileType html,tex,python,c,perl,js,php,java,make,cmake inoremap <buffer> <Space><Space> <Esc>/<++><CR>c4l
+"autocmd FileType html,tex,python,c,perl,js,php,java,make,cmake inoremap <buffer> <Space><Space> <Esc>/<++><CR>c4l
 
 
 let g:tex_flavor = "latex"
@@ -182,6 +177,7 @@ let g:ale_pattern_options = {
 
 let g:ale_linters = {
             \ 'c': ['gcc', 'clangtidy'],
+            \ 'haskell': ['cabal_ghc', 'ghc-mod', 'hdevtools', 'hie', 'hlint', 'stack_build', 'stack_ghc'],
             \}
 
 xmap <silent><expr>  ++  VMATH_YankAndAnalyse()
@@ -193,3 +189,8 @@ nnoremap <Right> <nop>
 nnoremap <Down> <nop>
 
 colorscheme ron
+
+" Common Abbreviations
+
+ab hte the
+ab teh the

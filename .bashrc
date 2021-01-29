@@ -237,6 +237,8 @@ shopt -s autocd
 __new_wd=
 PROMPT_COMMAND='[[ ${__new_wd:=$PWD} != $PWD ]] && exa; __new_wd=$PWD'
 
+export MAKEFLAGS="-j$(( "$(nproc)" + 1 ))"
+
 
 export BIBINPUTS="$BIBINPUTS:${HOME}/bib/"
 
@@ -250,3 +252,19 @@ eval "$(starship init bash)"
 
 source /usr/share/fzf/completion.bash
 source /usr/share/fzf/key-bindings.bash
+
+
+__fzf_rg__() {
+    RG_PREFIX="rg --column --line-number --no-heading --color=always --smart-case "
+    FZF_DEFAULT_COMMAND="$RG_PREFIX ''" fzf --bind "change:reload:$RG_PREFIX {q} || true" --ansi --disabled | while read -r item; do
+        printf '%q ' "$item"
+    done
+    echo
+}
+# CTRL-G - Grep over files under the current working directory
+bind -m emacs-standard -x '"\C-g": __fzf_rg__'
+bind -m vi-command -x '"\C-g": __fzf_rg__'
+bind -m vi-insert -x '"\C-g": __fzf_rg__'
+
+# shellcheck disable=2016
+bind -x '"\C-p": vim $(fzf);'

@@ -121,8 +121,4 @@ alias j='jobs -l'
 
 alias w='curl v2.wttr.in'
 
-alias yy='yay'
-alias ys='yay -Ss'
-alias yl='yay -Ql'
-
 export GCALPATH="$XDG_CONFIG_HOME"/gcal
