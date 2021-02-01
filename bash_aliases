@@ -42,6 +42,11 @@ alias fastping='ping -c 100 -i.2'
 alias lc='wc -l'
 llc() { [ -n "$1" ] && { ls -a "$1" | wc -l; } || { ls -a | wc -l; }; }
 
+# Knit Rmarkdown documents
+knit() {
+    R -e "rmarkdown::render('$1')"
+}
+
 # Custom alerts
 # low urgency
 alias alertl='notify-send --urgency=low'
@@ -113,6 +118,7 @@ function hexd () {
 alias hexdump='hexd'
 
 alias words='cat /usr/share/dict/words'
+alias sp='words | fzf'
 alias scrabble='cat /usr/share/dict/scrabble'
 
 alias unimatrix='unimatrix -a -f -s 96'
