@@ -160,7 +160,7 @@ autocmd FileType tex nnoremap <buffer> <F2> :w<CR>:VimtexCompile<CR>
 autocmd FileType tex nnoremap <buffer> <F3> :w<CR>:VimtexClean<CR>
 autocmd FileType tex inoremap <buffer> <F2> <Esc><F2>
 
-autocmd FileType rmd nnoremap <buffer> <F2> :w<CR>:VimuxRunCommand "R -e \"rmarkdown::render('<C-R>%')\""<CR>
+autocmd FileType rmd nnoremap <buffer> <F2> :w<CR>:RMarkdown pdf<CR>
 
 " Agda-vim
 au BufNewFile,BufRead *.agda setlocal filetype=agda
