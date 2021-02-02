@@ -28,6 +28,7 @@ Plugin 'wesQ3/vim-windowswap'
 Plugin 'lervag/vimtex'
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
+Plugin 'derekelkins/agda-vim'
 call vundle#end()
 
 
@@ -153,6 +154,9 @@ autocmd FileType tex nnoremap <buffer> <F3> :w<CR>:VimtexClean<CR>
 autocmd FileType tex inoremap <buffer> <F2> <Esc><F2>
 
 autocmd FileType rmd nnoremap <buffer> <F2> :w<CR>:VimuxRunCommand "R -e \"rmarkdown::render('<C-R>%')\""<CR>
+
+" Agda-vim
+au BufNewFile,BufRead *.agda setf agda
 
 augroup VimCompletesMeTex
     autocmd!
