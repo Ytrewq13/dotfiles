@@ -25,10 +25,17 @@ Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-repeat'
 Plugin 'dense-analysis/ale'
 Plugin 'wesQ3/vim-windowswap'
+Plugin 'derekelkins/agda-vim'
+
+" Document formatting packages
 Plugin 'lervag/vimtex'
+Plugin 'vim-pandoc/vim-pandoc'
+Plugin 'vim-pandoc/vim-pandoc-syntax'
+Plugin 'vim-pandoc/vim-rmarkdown'
+
+" ultisnips needs to be disabled for agda-vim to work (python3 vs python2)
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
-Plugin 'derekelkins/agda-vim'
 call vundle#end()
 
 
@@ -156,7 +163,7 @@ autocmd FileType tex inoremap <buffer> <F2> <Esc><F2>
 autocmd FileType rmd nnoremap <buffer> <F2> :w<CR>:VimuxRunCommand "R -e \"rmarkdown::render('<C-R>%')\""<CR>
 
 " Agda-vim
-au BufNewFile,BufRead *.agda setf agda
+au BufNewFile,BufRead *.agda setlocal filetype=agda
 
 augroup VimCompletesMeTex
     autocmd!
