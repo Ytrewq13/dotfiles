@@ -244,7 +244,8 @@ bindsym $mod+Shift+b border toggle
 bindsym $mod+Shift+m exec terminator -e 'bc -lq'
 bindsym $mod+Ctrl+m exec terminator -e 'bc -lq' --title "FCalc"
 
-bindsym $mod+Ctrl+c exec terminator -e 'ping -c 10 -i.2 8.8.8.8 && read -n 1 -p "Press key to return..." mainmenuinput' --title "FTerm"
+# Check network connection
+bindsym $mod+Ctrl+n exec terminator -e 'ping -c 10 -i.2 8.8.8.8 && read -n 1 -p "Press key to return..." mainmenuinput' --title "FTerm"
 
 # Mod, Shift, p = open random manpage in pdf form
 bindsym $mod+Shift+p exec random-man.sh
