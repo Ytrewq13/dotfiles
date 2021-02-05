@@ -128,3 +128,6 @@ alias j='jobs -l'
 alias w='curl v2.wttr.in'
 
 export GCALPATH="$XDG_CONFIG_HOME"/gcal
+
+
+alias avim='AGDA=1 vim'
