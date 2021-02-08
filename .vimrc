@@ -182,6 +182,7 @@ let g:vimtex_compiler_latexmk = {
     \   '-file-line-error',
     \   '-interaction=nonstopmode',
     \ ],
+    \ 'build_dir' : 'build'
     \}
 
 let g:ale_pattern_options = {
