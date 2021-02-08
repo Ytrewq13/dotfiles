@@ -233,6 +233,7 @@ bindsym $mod+Ctrl+s exec --no-startup-id startscreenkey --scr 0 # Left monitor
 bindsym $mod+Ctrl+Shift+s exec --no-startup-id startscreenkey --scr 1 # Right monitor
 
 bindsym $mod+Shift+v exec --no-startup-id virt-manager
+bindsym $mod+Ctrl+v exec visualise-covid
 
 bindsym $mod+Left exec workspace-adjust -1
 bindsym $mod+Right exec workspace-adjust 1
