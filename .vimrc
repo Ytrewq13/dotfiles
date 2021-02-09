@@ -25,7 +25,13 @@ Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-repeat'
 Plugin 'dense-analysis/ale'
 Plugin 'wesQ3/vim-windowswap'
+
+" Agda - a dependently typed language used for assisting in writing proofs
+" Remove this plugin when finished with agda - it conflicts with ultisnips
 Plugin 'derekelkins/agda-vim'
+" Coq - a theorem prover / proof assistant, similar to Agda (but more focused
+" on writing proofs specifically, and more widely used).
+Plugin 'whonore/Coqtail'
 
 " Document formatting packages
 Plugin 'lervag/vimtex'
@@ -33,7 +39,7 @@ Plugin 'vim-pandoc/vim-pandoc'
 Plugin 'vim-pandoc/vim-pandoc-syntax'
 Plugin 'vim-pandoc/vim-rmarkdown'
 
-" ultisnips needs to be disabled for agda-vim to work (python3 vs python2)
+" UltiSnips - used to implement snippets
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
 call vundle#end()
