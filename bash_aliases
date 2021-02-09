@@ -20,6 +20,9 @@ alias mkdir='mkdir -pv'
 
 alias diff='colordiff'
 
+# colorise ip output
+alias ip='ip -color=always'
+
 # Find TODOs and FIXMEs in files
 # Usage: `$ todos <FILE GLOB(S)>`
 # Or: `$ todos` to search cwd recursively
@@ -42,10 +45,6 @@ alias fastping='ping -c 100 -i.2'
 alias lc='wc -l'
 llc() { [ -n "$1" ] && { ls -a "$1" | wc -l; } || { ls -a | wc -l; }; }
 
-# Knit Rmarkdown documents
-knit() {
-    R -e "rmarkdown::render('$1')"
-}
 
 # Custom alerts
 # low urgency
