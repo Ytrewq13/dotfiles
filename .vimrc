@@ -25,6 +25,7 @@ Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-repeat'
 Plugin 'dense-analysis/ale'
 Plugin 'wesQ3/vim-windowswap'
+Plugin 'StanAngeloff/php.vim'
 
 " Agda - a dependently typed language used for assisting in writing proofs
 " Remove this plugin when finished with agda - it conflicts with ultisnips
@@ -167,6 +168,8 @@ autocmd FileType tex nnoremap <buffer> <F3> :w<CR>:VimtexClean<CR>
 autocmd FileType tex inoremap <buffer> <F2> <Esc><F2>
 
 autocmd FileType rmd nnoremap <buffer> <F2> :w<CR>:RMarkdown pdf<CR>
+
+autocmd FileType arduino set smartindent
 
 " Agda-vim
 au BufNewFile,BufRead *.agda setlocal filetype=agda
