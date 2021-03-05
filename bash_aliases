@@ -104,12 +104,7 @@ alias vim="vim -i $XDG_CACHE_HOME/.viminfo"
 
 alias tmux="tmux -f $XDG_CONFIG_HOME/tmux.conf"
 
-alias stalonetray='stalonetray --config $XDG_CONFIG_HOME/stalonetrayrc'
-
 alias shut='shutdown now'
-
-# TODO: setup youtube-viewer with an API key so I can have personalised suggestions
-alias YT='straw-viewer'
 
 function hexd () {
     hexdump -C "$1" | less

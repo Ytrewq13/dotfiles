@@ -217,13 +217,14 @@ gaps outer 5
 for_window [title="FCalc"] floating enable
 for_window [title="FTerm"] floating enable
 
+# TODO: Organise this better
+
 # start a terminal
 bindsym $mod+Return exec i3-sensible-terminal
 bindsym $mod+Ctrl+Return exec terminator --title "FTerm" # Floating terminal
 
-#bindsym $mod+Shift+x exec google-chrome-stable
 bindsym $mod+Shift+x exec chromium
-# bindsym $mod+Ctrl+l exec screenlocker
+
 bindsym $mod+Shift+a exec --no-startup-id "sxiv ~/.dotfiles/phonetic.png"
 bindsym $mod+Shift+s exec --no-startup-id steam
 bindsym $mod+Shift+d exec --no-startup-id discord
@@ -241,6 +242,8 @@ bindsym $mod+Shift+Left exec workspace-adjust-container -1
 bindsym $mod+Shift+Right exec workspace-adjust-container 1
 bindsym $mod+Shift+w exec randomize-background
 bindsym $mod+Shift+b border toggle
+
+bindsym $mod+Ctrl+w exec terminator -e 'cat /usr/share/dict/words | fzf' --title "FTerm"
 
 bindsym $mod+Shift+m exec terminator -e 'bc -lq'
 bindsym $mod+Ctrl+m exec terminator -e 'bc -lq' --title "FCalc"
