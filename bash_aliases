@@ -113,6 +113,7 @@ alias hexdump='hexd'
 
 alias words='cat /usr/share/dict/words'
 alias sp='words | fzf'
+alias spd='words | fzf | xargs dict'
 alias scrabble='cat /usr/share/dict/scrabble'
 
 alias unimatrix='unimatrix -a -f -s 96'

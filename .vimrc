@@ -97,6 +97,16 @@ autocmd BufNewFile,BufRead *.c set formatprg=astyle\ -T5pb
 
 set backspace=2
 
+" Completion with C-p:
+" . - current buffer
+" w - any other windows open in the current tab
+" b - any other buffers open in any tab
+" u - unloaded buffers
+" t - tags file (from ctags)
+" i - included files (if using a programming language with include)
+" kspell - spelling dictionary (only if spellcheck is enabled)
+set complete=.,w,b,u,t,i,kspell
+
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
@@ -105,6 +115,7 @@ nnoremap <C-H> <C-W><C-H>
 nnoremap <C-N> :tabn<CR>
 nnoremap <C-P> :tabp<CR>
 nnoremap <C-T> :tabnew<CR>
+nnoremap <leader> t :terminal ++curwin
 
 
 vmap <expr> <LEFT>  DVB_Drag('left')
@@ -140,7 +151,7 @@ call pathogen#helptags()
 nnoremap <C-f> :Files<CR>
 nnoremap <C-g> :Ag<CR>
 
-nnoremap <silent> <Leader>c :setlocal spell!<CR>
+nnoremap <silent> <Leader>s :setlocal spell!<CR>
 
 set showcmd
 
@@ -155,9 +166,6 @@ autocmd FileType groff inoremap <buffer> <F2> <Esc><F2>
 
 autocmd FileType markdown nnoremap <buffer> <F2> :w<CR>:call job_start(['/bin/sh', '-c', "pandoc --pdf-engine=xelatex -tpdf <C-R>% > .".expand('%:r').".pdf && mv .".expand('%:r').".pdf ".expand('%:r').".pdf"])<CR>
 autocmd FileType markdown inoremap <buffer> <F2> <Esc><F2>
-
-
-"autocmd FileType html,tex,python,c,perl,js,php,java,make,cmake inoremap <buffer> <Space><Space> <Esc>/<++><CR>c4l
 
 
 let g:tex_flavor = "latex"
@@ -196,6 +204,7 @@ let g:vimtex_compiler_latexmk = {
 
 let g:ale_pattern_options = {
 \   '.*\.tex$': {'ale_enabled': 0},
+\   '.*\.Rmd$': {'ale_enabled': 0},
 \}
 
 let g:ale_linters = {
