@@ -27,9 +27,6 @@ Plugin 'dense-analysis/ale'
 Plugin 'wesQ3/vim-windowswap'
 Plugin 'StanAngeloff/php.vim'
 
-" Agda - a dependently typed language used for assisting in writing proofs
-" Remove this plugin when finished with agda - it conflicts with ultisnips
-Plugin 'derekelkins/agda-vim'
 " Coq - a theorem prover / proof assistant, similar to Agda (but more focused
 " on writing proofs specifically, and more widely used).
 Plugin 'whonore/Coqtail'
@@ -93,7 +90,6 @@ set tabstop=4
 
 set shiftwidth=4
 set expandtab
-autocmd BufNewFile,BufRead *.c set formatprg=astyle\ -T5pb
 
 set backspace=2
 
@@ -115,7 +111,8 @@ nnoremap <C-H> <C-W><C-H>
 nnoremap <C-N> :tabn<CR>
 nnoremap <C-P> :tabp<CR>
 nnoremap <C-T> :tabnew<CR>
-nnoremap <leader> t :terminal ++curwin
+nnoremap <leader>t :terminal ++curwin<CR>
+nnoremap <leader>vt :vert terminal<CR>
 
 
 vmap <expr> <LEFT>  DVB_Drag('left')
@@ -130,7 +127,6 @@ set tabpagemax=24
 set splitbelow
 set splitright
 
-au BufNewFile,BufRead *.ms set filetype=groff
 
 set number relativenumber
 set ruler
@@ -147,26 +143,35 @@ set list
 execute pathogen#infect()
 call pathogen#helptags()
 
-"map ; :Files<CR>
+" Recursively search for files by their name
 nnoremap <C-f> :Files<CR>
+" Silver searcher - grep through files in the current directory
 nnoremap <C-g> :Ag<CR>
 
+" Toggle spellcheck
 nnoremap <silent> <Leader>s :setlocal spell!<CR>
 
 set showcmd
 
 
-autocmd BufRead,BufNewFile *.h set filetype=c
+" Setting filetypes for problematic file extensions
+autocmd BufRead,BufNewFile *.ms set filetype=groff
+autocmd BufRead,BufNewFile *.h  set filetype=c
+autocmd BufRead,BufNewFile *.c  set formatprg=astyle\ -T5pb
 
-let g:ale_c_parse_makefile = 1
 
-"autocmd FileType groff inoremap <buffer> <Space><Space> <Esc>/<++><CR>c4l
+autocmd FileType arduino set smartindent
+
+
+" DOCUMENT PREPARATION
+""""""""""""""""""""""
 autocmd FileType groff nnoremap <buffer> <F2> :w<CR>:call job_start(['/bin/sh', '-c', "groff -R -t -p -e -k -ms -Tps <C-R>% \| ps2pdf - ".expand('%:r').".pdf"])<CR><CR>
 autocmd FileType groff inoremap <buffer> <F2> <Esc><F2>
 
 autocmd FileType markdown nnoremap <buffer> <F2> :w<CR>:call job_start(['/bin/sh', '-c', "pandoc --pdf-engine=xelatex -tpdf <C-R>% > .".expand('%:r').".pdf && mv .".expand('%:r').".pdf ".expand('%:r').".pdf"])<CR>
 autocmd FileType markdown inoremap <buffer> <F2> <Esc><F2>
 
+autocmd FileType rmd nnoremap <buffer> <F2> :w<CR>:RMarkdown pdf<CR>
 
 let g:tex_flavor = "latex"
 
@@ -175,12 +180,6 @@ autocmd FileType tex nnoremap <buffer> <F2> :w<CR>:VimtexCompile<CR>
 autocmd FileType tex nnoremap <buffer> <F3> :w<CR>:VimtexClean<CR>
 autocmd FileType tex inoremap <buffer> <F2> <Esc><F2>
 
-autocmd FileType rmd nnoremap <buffer> <F2> :w<CR>:RMarkdown pdf<CR>
-
-autocmd FileType arduino set smartindent
-
-" Agda-vim
-au BufNewFile,BufRead *.agda setlocal filetype=agda
 
 augroup VimCompletesMeTex
     autocmd!
@@ -202,31 +201,37 @@ let g:vimtex_compiler_latexmk = {
     \ 'build_dir' : 'build'
     \}
 
+
+" ALE: Asynchronous Linting Engine
+""""""""""""""""""""""""""""""""""
+let g:ale_c_parse_makefile = 1
 let g:ale_pattern_options = {
 \   '.*\.tex$': {'ale_enabled': 0},
 \   '.*\.Rmd$': {'ale_enabled': 0},
 \   '.*\.R$'  : {'ale_enabled': 0},
 \}
-
 let g:ale_linters = {
-            \ 'c': ['gcc', 'clangtidy'],
-            \ 'haskell': ['cabal_ghc', 'ghc-mod', 'hdevtools', 'hie', 'hlint', 'stack_build', 'stack_ghc'],
-            \}
+\   'c': ['gcc', 'clangtidy'],
+\   'haskell': ['cabal_ghc', 'ghc-mod', 'hdevtools', 'hie', 'hlint', 'stack_build', 'stack_ghc'],
+\}
 
+
+" For basic statistical analysis of a small group of numbers
 xmap <silent><expr>  ++  VMATH_YankAndAnalyse()
 nmap <silent>        ++  vip++
 
+" Don't use the arrow keys in normal mode
 nnoremap <Left> <nop>
 nnoremap <Up> <nop>
 nnoremap <Right> <nop>
 nnoremap <Down> <nop>
 
+" Ron
 colorscheme ron
 
 " Automatically change the local working directory when editing a new file
 autocmd BufEnter * silent! lcd %:p:h
 
 " Common Abbreviations
-
 ab hte the
 ab teh the
