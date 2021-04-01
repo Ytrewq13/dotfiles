@@ -205,6 +205,7 @@ let g:vimtex_compiler_latexmk = {
 let g:ale_pattern_options = {
 \   '.*\.tex$': {'ale_enabled': 0},
 \   '.*\.Rmd$': {'ale_enabled': 0},
+\   '.*\.R$'  : {'ale_enabled': 0},
 \}
 
 let g:ale_linters = {
@@ -221,6 +222,9 @@ nnoremap <Right> <nop>
 nnoremap <Down> <nop>
 
 colorscheme ron
+
+" Automatically change the local working directory when editing a new file
+autocmd BufEnter * silent! lcd %:p:h
 
 " Common Abbreviations
 
