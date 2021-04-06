@@ -23,6 +23,7 @@ Plugin 'benmills/vimux'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-repeat'
+Plugin 'tpope/vim-dispatch'
 Plugin 'dense-analysis/ale'
 Plugin 'wesQ3/vim-windowswap'
 Plugin 'StanAngeloff/php.vim'
@@ -36,6 +37,7 @@ Plugin 'lervag/vimtex'
 Plugin 'vim-pandoc/vim-pandoc'
 Plugin 'vim-pandoc/vim-pandoc-syntax'
 Plugin 'vim-pandoc/vim-rmarkdown'
+Plugin 'chrisbra/NrrwRgn'
 
 " UltiSnips - used to implement snippets
 Plugin 'SirVer/ultisnips'
@@ -171,7 +173,12 @@ autocmd FileType groff inoremap <buffer> <F2> <Esc><F2>
 autocmd FileType markdown nnoremap <buffer> <F2> :w<CR>:call job_start(['/bin/sh', '-c', "pandoc --pdf-engine=xelatex -tpdf <C-R>% > .".expand('%:r').".pdf && mv .".expand('%:r').".pdf ".expand('%:r').".pdf"])<CR>
 autocmd FileType markdown inoremap <buffer> <F2> <Esc><F2>
 
-autocmd FileType rmd nnoremap <buffer> <F2> :w<CR>:RMarkdown pdf<CR>
+" vim-rmarkdown is blocking for the duration of the knitting (and seems to bug
+" out if I press any keys or if the window loses focus). Until I figure this
+" out I will use makeprg and vim-dispatch
+"autocmd FileType rmd nnoremap <buffer> <F2> :w<CR>:RMarkdown pdf<CR>
+autocmd FileType rmarkdown setl makeprg=R\ -q\ -e\ 'library(rmarkdown);render(\"%\",\ quiet=TRUE)'
+autocmd BufWritePost *.Rmd :Make!
 
 let g:tex_flavor = "latex"
 
