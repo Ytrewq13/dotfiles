@@ -37,6 +37,7 @@ Plugin 'lervag/vimtex'
 Plugin 'vim-pandoc/vim-pandoc'
 Plugin 'vim-pandoc/vim-pandoc-syntax'
 Plugin 'vim-pandoc/vim-rmarkdown'
+Plugin 'jalvesaq/Nvim-R', {'branch': 'stable'}
 Plugin 'chrisbra/NrrwRgn'
 
 " UltiSnips - used to implement snippets
