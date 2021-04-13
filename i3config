@@ -269,4 +269,3 @@ exec --no-startup-id nm-applet
 exec --no-startup-id setxkbmap -layout gb
 exec --no-startup-id fcitx &
 exec --no-startup-id background-daemon
-exec --no-startup-id play-with-mpv &

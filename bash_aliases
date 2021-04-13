@@ -127,7 +127,4 @@ alias s='setsid -f'
 
 export GCALPATH="$XDG_CONFIG_HOME"/gcal
 
-
-# Vim for Agda - disables Ultisnips via code I added to the ultisnips.vim
-# autoload file
-alias avim='AGDA=1 vim'
+alias units='units -H ""'
