@@ -178,9 +178,9 @@ autocmd FileType markdown inoremap <buffer> <F2> <Esc><F2>
 " out I will use makeprg and vim-dispatch
 "autocmd FileType rmd nnoremap <buffer> <F2> :w<CR>:RMarkdown pdf<CR>
 autocmd FileType rmarkdown setl makeprg=R\ -q\ -e\ 'library(rmarkdown);render(\"%\",\ quiet=TRUE)'
-autocmd FileType rmarkdown nnoremap <buffer> <F2> :Make!
+autocmd FileType rmarkdown nnoremap <buffer> <F2> :Make!<CR>
 autocmd FileType rmarkdown inoremap <buffer> <F2> <Esc><F2>
-autocmd FileType rmarkdown nnoremap <buffer> <F3> :Make
+autocmd FileType rmarkdown nnoremap <buffer> <F3> :Make<CR>
 autocmd FileType rmarkdown inoremap <buffer> <F3> <Esc><F3>
 
 let g:tex_flavor = "latex"
