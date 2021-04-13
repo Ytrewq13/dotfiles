@@ -36,7 +36,7 @@ Plugin 'whonore/Coqtail'
 Plugin 'lervag/vimtex'
 Plugin 'vim-pandoc/vim-pandoc'
 Plugin 'vim-pandoc/vim-pandoc-syntax'
-Plugin 'vim-pandoc/vim-rmarkdown'
+"Plugin 'vim-pandoc/vim-rmarkdown'
 Plugin 'jalvesaq/Nvim-R', {'branch': 'stable'}
 Plugin 'chrisbra/NrrwRgn'
 
@@ -178,11 +178,9 @@ autocmd FileType markdown inoremap <buffer> <F2> <Esc><F2>
 " out if I press any keys or if the window loses focus). Until I figure this
 " out I will use makeprg and vim-dispatch
 "autocmd FileType rmd nnoremap <buffer> <F2> :w<CR>:RMarkdown pdf<CR>
-autocmd FileType rmarkdown setl makeprg=R\ -q\ -e\ 'library(rmarkdown);render(\"%\",\ quiet=TRUE)'
-autocmd FileType rmarkdown nnoremap <buffer> <F2> :Make!<CR>
+" Using Nvim-R for compiling rmarkdown documents
+autocmd FileType rmarkdown nnoremap <buffer> <F2> :call RMakeRmd("default")<CR>
 autocmd FileType rmarkdown inoremap <buffer> <F2> <Esc><F2>
-autocmd FileType rmarkdown nnoremap <buffer> <F3> :Make<CR>
-autocmd FileType rmarkdown inoremap <buffer> <F3> <Esc><F3>
 
 let g:tex_flavor = "latex"
 
