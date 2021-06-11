@@ -128,3 +128,6 @@ alias s='setsid -f'
 export GCALPATH="$XDG_CONFIG_HOME"/gcal
 
 alias units='units -H ""'
+
+# Alias to connect to Ben's Samba share
+alias beans='smbclient -Uhguest //beans-box/Charlbury Charlbury69Beans -D sam'
