@@ -28,9 +28,7 @@ Plugin 'dense-analysis/ale'
 Plugin 'wesQ3/vim-windowswap'
 Plugin 'StanAngeloff/php.vim'
 
-" Coq - a theorem prover / proof assistant, similar to Agda (but more focused
-" on writing proofs specifically, and more widely used).
-Plugin 'whonore/Coqtail'
+Plugin 'ARM9/arm-syntax-vim'
 
 " Document formatting packages
 Plugin 'lervag/vimtex'
@@ -179,8 +177,8 @@ autocmd FileType markdown inoremap <buffer> <F2> <Esc><F2>
 " out I will use makeprg and vim-dispatch
 "autocmd FileType rmd nnoremap <buffer> <F2> :w<CR>:RMarkdown pdf<CR>
 " Using Nvim-R for compiling rmarkdown documents
-autocmd FileType rmarkdown nnoremap <buffer> <F2> :call RMakeRmd("default")<CR>
-autocmd FileType rmarkdown inoremap <buffer> <F2> <Esc><F2>
+autocmd FileType rmd nnoremap <buffer> <F2> :call RMakeRmd("default")<CR>
+autocmd FileType rmd inoremap <buffer> <F2> <Esc><F2>
 
 let g:tex_flavor = "latex"
 
@@ -206,6 +204,7 @@ let g:vimtex_compiler_latexmk = {
     \   '-verbose',
     \   '-file-line-error',
     \   '-interaction=nonstopmode',
+    \   '-shell-escape',
     \ ],
     \ 'build_dir' : 'build'
     \}
@@ -223,6 +222,7 @@ let g:ale_linters = {
 \   'c': ['gcc', 'clangtidy'],
 \   'haskell': ['cabal_ghc', 'ghc-mod', 'hdevtools', 'hie', 'hlint', 'stack_build', 'stack_ghc'],
 \}
+autocmd BufEnter *.asm silent! set ft=nasm
 
 
 " For basic statistical analysis of a small group of numbers
