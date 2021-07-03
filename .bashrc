@@ -174,9 +174,6 @@ export GEM_SPEC_CACHE="$XDG_CACHE_HOME"/gem
 alias neomutt='neomutt -F "$XDG_CONFIG_HOME"/mutt/.muttrc'
 alias mutt='neomutt'
 
-# Github CLI completion
-eval "$(gh completion -s bash)"
-
 #####################################################################
 ########################## nnn file browser #########################
 #####################################################################
