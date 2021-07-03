@@ -27,6 +27,7 @@ Plugin 'tpope/vim-dispatch'
 Plugin 'dense-analysis/ale'
 Plugin 'wesQ3/vim-windowswap'
 Plugin 'StanAngeloff/php.vim'
+Plugin 'csexton/trailertrash.vim'
 
 Plugin 'ARM9/arm-syntax-vim'
 
@@ -156,12 +157,15 @@ set showcmd
 
 
 " Setting filetypes for problematic file extensions
-autocmd BufRead,BufNewFile *.ms set filetype=groff
-autocmd BufRead,BufNewFile *.h  set filetype=c
-autocmd BufRead,BufNewFile *.c  set formatprg=astyle\ -T5pb
+autocmd BufRead,BufNewFile *.ms setlocal filetype=groff
+autocmd BufRead,BufNewFile *.h  setlocal filetype=c
+"autocmd FileType c setlocal formatprg=astyle\ -s4pJxC79A3k1W3c
+" TODO: implement a formatprg using uncrustify / clang-format and compare them
+autocmd FileType c setlocal formatoptions=croqanlj
+autocmd FileType c let &formatprg='clang-format --style=file'
 
 
-autocmd FileType arduino set smartindent
+autocmd FileType arduino setlocal smartindent
 
 
 " DOCUMENT PREPARATION
@@ -222,7 +226,11 @@ let g:ale_linters = {
 \   'c': ['gcc', 'clangtidy'],
 \   'haskell': ['cabal_ghc', 'ghc-mod', 'hdevtools', 'hie', 'hlint', 'stack_build', 'stack_ghc'],
 \}
-autocmd BufEnter *.asm silent! set ft=nasm
+let g:ale_asm_gcc_executable = 'aarch64-none-elf-gcc'
+let g:ale_c_cc_executable = 'aarch64-none-elf-gcc'
+
+autocmd BufEnter *.asm silent! setlocal ft=nasm
+autocmd BufNewFile,BufRead *.s,*.S silent! setlocal filetype=arm " arm = armv6/7
 
 
 " For basic statistical analysis of a small group of numbers
